@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.garfield.travelnote</groupId>
+    <artifactId>travelnote-server</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version> <!-- lookup parent from repository -->
+    </parent>
+    <properties>
+        <guava.version>19.0</guava.version>
+        <spring.session.version>1.1.1.RELEASE</spring.session.version>
+        <commons.lang3.version>3.4</commons.lang3.version>
+        <commons.collection.version>3.2.2</commons.collection.version>
+        <mysql.connection.version>5.1.38</mysql.connection.version>
+        <mybatis.version>3.3.1</mybatis.version>
+        <mybatis.spring.version>1.2.5</mybatis.spring.version>
+        <mybatis.helper.version>1.1.1</mybatis.helper.version>
+        <mybatis.generator.version>1.3.2</mybatis.generator.version>
+        <jdk.version>1.7</jdk.version>
+        <commons.io.version>2.4</commons.io.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <disconf.env>rd</disconf.env>
+        <disconf.conf_server_host>disconf-test.jingzheit.com:8081</disconf.conf_server_host>
+        <disconf.conf_server_zoo_action>121.196.200.108:8581</disconf.conf_server_zoo_action>
+        <auth.version>0.0.1-SNAPSHOT</auth.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.43</version>
+        </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${mybatis.helper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${mybatis.helper.version}</version>
+        </dependency>
+
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.garfield.travelnote</groupId>
+                <artifactId>travelnote-server-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.garfield.travelnote</groupId>
+                <artifactId>travelnote-server-biz</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.garfield.travelnote</groupId>
+                <artifactId>travelnote-server-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.garfield.travelnote</groupId>
+                <artifactId>travelnote-server-dal</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.garfield.travelnote</groupId>
+                <artifactId>travelnote-server-deploy</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.garfield.travelnote</groupId>
+                <artifactId>travelnote-server-web</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+
+            <!-- JSON -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.8.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>2.8.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.21</version>
+            </dependency>
+            <!-- ?????????? -->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>2.4.7</version>
+                <!-- ????????????????Spring Boot???????????? -->
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>3.0.0-RC1</version>
+            </dependency>
+
+            <!-- captcha -->
+            <dependency>
+                <groupId>cn.dreampie</groupId>
+                <artifactId>jfinal-captcha</artifactId>
+                <version>0.1</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoleilu</groupId>
+                <artifactId>hutool</artifactId>
+                <version>2.7.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <distributionManagement>
+        <repository>
+            <id>ov-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://nexus.jingzheit.com:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ov-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://nexus.jingzheit.com:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archetypeFilteredExtentions>js,json,md,java,xml,txt,groovy,jsp,vm,html,properties,gitignore</archetypeFilteredExtentions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+  <modules>
+    <module>travelnote-server-deploy</module>
+    <module>travelnote-server-web</module>
+    <module>travelnote-server-biz</module>
+    <module>travelnote-server-dal</module>
+    <module>travelnote-server-api</module>
+    <module>travelnote-server-common</module>
+  </modules>
+</project>
