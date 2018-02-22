@@ -19,4 +19,45 @@
     <result column="updated_at" property="updatedAt" jdbcType="INTEGER" />
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
+
+  <resultMap id="UserResultMap" type="com.garfield.travelnote.common.model.bo.UserBo" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="favourite" property="favourite" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="BaseField">
+    id,name,gender,avatar,favourite,email,phone,invalid_pwd_count,role_id,created_at,updated_at,is_deleted
+  </sql>
+
+  <select id="getByPhone" resultMap="BaseResultMap">
+    SELECT <include refid="BaseField"/>
+    FROM user
+    WHERE is_deleted = 0
+    AND phone = #{phone}
+  </select>
+
+  <select id="selectUserByName" resultType="java.lang.Integer">
+
+    SELECT COUNT(id) FROM user
+    WHERE is_deleted = 0 and name = #{name}
+
+  </select>
+
+  <select id="selectUserInfo" resultMap="UserResultMap">
+
+    SELECT  <include refid="BaseField"/>
+    FROM user
+    WHERE is_deleted = 0 and id = #{id}
+
+  </select>
 </mapper>

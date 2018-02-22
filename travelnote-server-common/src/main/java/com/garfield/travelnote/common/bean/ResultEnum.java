@@ -14,14 +14,14 @@ public enum ResultEnum implements IResultEnum {
     //用户相关
     registed(102, "Number Registered"),
     errorPassword(103, "Wrong User Name or Password"),
-    illegalNickname(104, "Nickname Used"),
-    userNotExist(105, "Invalid User"),
     illegalUserId(106, "User login has expired. Please login again"),
     userDisabled(108, "User Disabled"),
     phoneNumError(108,"手机号码格式错误"),
 
-    nullContent(201, "Sending information cannot be blank"),
-    goodsNotExist(202, "Product information does not exist"),
+    passwordNotEqual(301, "Password not equal"),
+    illegalName(302, "Name Used"),
+    userAlreadyExist(303, "User already exist"),
+    userNotExist(304, "User not exist"),
 
     systemError(999, "System Error");
 
