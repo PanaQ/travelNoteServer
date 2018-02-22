@@ -26,10 +26,10 @@ public class SpringConfig {
     @Bean
     public HikariDataSource hikariDataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("");
-        config.setDriverClassName("");
-        config.setUsername("");
-        config.setPassword("");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false");
+        config.setDriverClassName("com.mysql.jdbc.Driver");
+        config.setUsername("root");
+        config.setPassword("123456");
         //连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
         config.setMaximumPoolSize(10);
         //等待连接池分配连接的最大时长（毫秒）
