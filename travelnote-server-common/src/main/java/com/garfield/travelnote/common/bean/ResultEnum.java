@@ -22,6 +22,7 @@ public enum ResultEnum implements IResultEnum {
     illegalName(302, "Name Used"),
     userAlreadyExist(303, "User already exist"),
     userNotExist(304, "User not exist"),
+    notFollowYourself(305, "Not follow yourself"),
 
     systemError(999, "System Error");
 
