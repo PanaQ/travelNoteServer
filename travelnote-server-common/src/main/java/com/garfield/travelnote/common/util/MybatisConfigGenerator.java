@@ -10,7 +10,7 @@ import java.sql.*;
 public class MybatisConfigGenerator {
 
 //    public String URL = "jdbc:mysql://localhost:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false";
-    public String URL = "jdbc:mysql://192.168.30.36:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false";
+    public String URL = "jdbc:mysql://192.168.30.174:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false";
 
     public String USER = "root";
     public String PASSWORD = "123456";

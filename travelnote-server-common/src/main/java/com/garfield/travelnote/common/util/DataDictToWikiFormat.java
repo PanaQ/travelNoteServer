@@ -15,7 +15,7 @@ public class DataDictToWikiFormat {
 
     public static void main(String[] args) throws SQLException {
         //String url = "jdbc:mysql://120.55.118.130:3306/gzseed_vancelle_order";
-        String url = "jdbc:mysql://192.168.30.36:3306/";
+        String url = "jdbc:mysql://192.168.30.174:3306/";
         String user = "root";
         String password = "123456";
         String schemaName = "travel_note";
