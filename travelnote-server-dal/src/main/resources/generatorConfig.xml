@@ -77,7 +77,6 @@
             <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="note_id" property="noteId" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="user_id" property="userId" javaType="java.lang.Long" jdbcType="INTEGER"/>
-            <columnOverride column="floor" property="floor" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>

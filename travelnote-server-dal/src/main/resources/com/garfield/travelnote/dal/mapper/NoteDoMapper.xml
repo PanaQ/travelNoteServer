@@ -27,7 +27,6 @@
   <resultMap id="NoteCommentResultMap" type="com.garfield.travelnote.common.model.bo.NoteCommentBo" >
     <result column="note_id" property="noteId" jdbcType="INTEGER" />
     <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER" />
-    <result column="floor" property="floor" jdbcType="INTEGER" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
     <result column="comment_name" property="commentName" jdbcType="VARCHAR" />
   </resultMap>
@@ -38,7 +37,7 @@
   </sql>
 
   <sql id="NoteCommentField">
-    nc.note_id,nc.user_id comment_user_id,nc.floor,nc.comment,u.name comment_name
+    nc.note_id,nc.user_id comment_user_id,nc.comment,u.name comment_name
   </sql>
 
   <select id="selectNoteBoById" resultMap="NoteBoResultMap">
@@ -59,7 +58,7 @@
     WHERE nc.is_deleted = 0
     AND u.is_deleted = 0
     AND nc.note_id = 1
-    ORDER BY nc.floor ASC
+    ORDER BY nc.created_at ASC
   </select>
 
 </mapper>

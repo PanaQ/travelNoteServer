@@ -24,11 +24,6 @@ public class NoteCommentDo {
     private Long userId;
 
     /**
-     * 楼
-     */
-    private Long floor;
-
-    /**
      * 留言内容
      */
     private String comment;
@@ -103,24 +98,6 @@ public class NoteCommentDo {
      */
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    /**
-     * 获取楼
-     *
-     * @return floor - 楼
-     */
-    public Long getFloor() {
-        return floor;
-    }
-
-    /**
-     * 设置楼
-     *
-     * @param floor 楼
-     */
-    public void setFloor(Long floor) {
-        this.floor = floor;
     }
 
     /**

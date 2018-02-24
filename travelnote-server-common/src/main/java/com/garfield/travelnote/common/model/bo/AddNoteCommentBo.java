@@ -1,43 +1,34 @@
 package com.garfield.travelnote.common.model.bo;
 
 
-public class NoteCommentBo {
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+
+public class AddNoteCommentBo {
 
     /**
      * 游记id
      */
+    @NotNull(message = "游记id不能为空")
     private Long noteId;
 
     /**
      * 留言用户id
      */
+    @NotNull(message = "留言用户id不能为空")
     private Long commentUserId;
-
 
     /**
      * 留言内容
      */
+    @NotEmpty(message = "留言内容不能为空")
     private String comment;
 
-    /**
-     * 留言用户的名称
-     */
-    private String commentName;
-
-    /**
-     * 获取游记id
-     *
-     * @return note_id - 游记id
-     */
     public Long getNoteId() {
         return noteId;
     }
 
-    /**
-     * 设置游记id
-     *
-     * @param noteId 游记id
-     */
     public void setNoteId(Long noteId) {
         this.noteId = noteId;
     }
@@ -50,28 +41,10 @@ public class NoteCommentBo {
         this.commentUserId = commentUserId;
     }
 
-    public String getCommentName() {
-        return commentName;
-    }
-
-    public void setCommentName(String commentName) {
-        this.commentName = commentName;
-    }
-
-    /**
-     * 获取留言内容
-     *
-     * @return comment - 留言内容
-     */
     public String getComment() {
         return comment;
     }
 
-    /**
-     * 设置留言内容
-     *
-     * @param comment 留言内容
-     */
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
     }

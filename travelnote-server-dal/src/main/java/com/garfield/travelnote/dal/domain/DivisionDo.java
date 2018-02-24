@@ -14,7 +14,7 @@ public class DivisionDo {
     /**
      * 行政区划代码
      */
-    private char code;
+    private String code;
 
     /**
      * 名称
@@ -73,7 +73,7 @@ public class DivisionDo {
      *
      * @return code - 行政区划代码
      */
-    public char getCode() {
+    public String getCode() {
         return code;
     }
 
@@ -82,7 +82,7 @@ public class DivisionDo {
      *
      * @param code 行政区划代码
      */
-    public void setCode(char code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

@@ -39,5 +39,9 @@
             <groupId>com.zhexinit.ov.common</groupId>
             <artifactId>common-util</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.garfield.travelnote</groupId>
+            <artifactId>travelnote-server-dal</artifactId>
+        </dependency>
     </dependencies>
 </project>

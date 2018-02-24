@@ -26,7 +26,7 @@ public class SpringConfig {
     @Bean
     public HikariDataSource hikariDataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false");
+        config.setJdbcUrl("jdbc:mysql://192.168.30.174:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false");
         config.setDriverClassName("com.mysql.jdbc.Driver");
         config.setUsername("root");
         config.setPassword("123456");

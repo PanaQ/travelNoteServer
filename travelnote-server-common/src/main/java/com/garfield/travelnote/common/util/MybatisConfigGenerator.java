@@ -27,7 +27,7 @@ public class MybatisConfigGenerator {
     public static void main(String[] args) {
         try {
             String schemaName = "travel_note";
-            String tableName = "user_follow";
+            String tableName = "administration_division";
             new MybatisConfigGenerator().generate(schemaName, tableName);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
