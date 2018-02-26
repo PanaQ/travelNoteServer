@@ -1,4 +1,4 @@
-package com.garfield.travelnote.biz.service.impl;
+package com.garfield.travelnote.biz.service;
 
 import com.garfield.travelnote.common.model.bo.AddMateNoteBo;
 import com.garfield.travelnote.common.model.bo.MateNoteBo;

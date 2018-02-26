@@ -1,12 +1,13 @@
 package com.garfield.travelnote.biz.service.impl;
 
+import com.garfield.travelnote.biz.service.PasswordEncodeService;
+import com.garfield.travelnote.biz.service.UserService;
 import com.garfield.travelnote.common.bean.ResultEnum;
 import com.garfield.travelnote.common.model.bo.BaseUserBo;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import com.garfield.travelnote.common.util.AesCryptUtil;
 import com.garfield.travelnote.dal.domain.UserDo;
 import com.garfield.travelnote.dal.mapper.UserDoMapper;
-import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.exception.CommonException;
 import com.zhexinit.ov.common.util.DateUitl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
  * Created by Jingly on 2018/2/22.
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDoMapper userDoMapper;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService{
     private PasswordEncodeService passwordEncodeService;
 
     @Override
-    public void register(BaseUserBo baseUserBo){
+    public void register(BaseUserBo baseUserBo) {
 
         String password = baseUserBo.getPassword();
         String confirmPassword = baseUserBo.getConfirmPassword();
@@ -39,16 +40,16 @@ public class UserServiceImpl implements UserService{
         }
 
         UserDo existUserDo = userDoMapper.getByPhone(baseUserBo.getPhone());
-        if (existUserDo==null){
-            try{
+        if (existUserDo == null) {
+            try {
                 String decPassword = AesCryptUtil.decrypt(baseUserBo.getPassword());
                 password = passwordEncodeService.encode(decPassword);
-                UserDo userDo = createAppUserDo(baseUserBo.getPhone(),password);
+                UserDo userDo = createAppUserDo(baseUserBo.getPhone(), password);
                 userDoMapper.insertSelective(userDo);
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw new CommonException(ResultEnum.systemError);
             }
-        }else{
+        } else {
             throw new CommonException(ResultEnum.userAlreadyExist);
         }
     }
@@ -61,10 +62,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserBo getUserInfo(Long id) {
         UserBo userBo = userDoMapper.selectUserInfo(id);
-        if (userBo == null){
+        if (userBo == null) {
             throw new CommonException(ResultEnum.userNotExist);
         }
         return userBo;
+    }
+
+    @Override
+    public UserBo getUserByLogin(String login) {
+        return userDoMapper.getLoginUser(login);
     }
 
     private UserDo createAppUserDo(String phone, String password) {

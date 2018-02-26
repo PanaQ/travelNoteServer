@@ -1,7 +1,5 @@
-package com.garfield.travelnote.biz.service.impl;
+package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.common.model.bo.BaseNoteBo;
-import com.garfield.travelnote.common.model.bo.NoteBo;
 import com.garfield.travelnote.common.model.bo.UserFollowBo;
 
 /**

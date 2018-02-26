@@ -1,8 +1,7 @@
 package com.garfield.travelnote.biz.service.impl;
 
+import com.garfield.travelnote.biz.service.UserFollowService;
 import com.garfield.travelnote.common.bean.ResultEnum;
-import com.garfield.travelnote.common.model.bo.BaseNoteBo;
-import com.garfield.travelnote.common.model.bo.NoteBo;
 import com.garfield.travelnote.common.model.bo.UserFollowBo;
 import com.garfield.travelnote.dal.domain.UserFollowDo;
 import com.garfield.travelnote.dal.mapper.UserFollowDoMapper;
@@ -11,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Objects;
+
 /**
  * Created by Jingly on 2018/2/22.
  */
 @Service
-public class UserFollowServiceImpl implements UserFollowService{
+public class UserFollowServiceImpl implements UserFollowService {
 
     @Autowired
     private UserFollowDoMapper userFollowDoMapper;
@@ -23,7 +24,7 @@ public class UserFollowServiceImpl implements UserFollowService{
     @Override
     public void addFollow(UserFollowBo userFollowBo) {
 
-        if(userFollowBo.getUserId() == userFollowBo.getFollowId()){
+        if(Objects.equals(userFollowBo.getUserId(), userFollowBo.getFollowId())){
             throw new CommonException(ResultEnum.notFollowYourself);
         }
 

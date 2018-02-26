@@ -1,5 +1,6 @@
 package com.garfield.travelnote.biz.service.impl;
 
+import com.garfield.travelnote.biz.service.NoteCommentService;
 import com.garfield.travelnote.common.model.bo.AddNoteCommentBo;
 import com.garfield.travelnote.dal.domain.NoteCommentDo;
 import com.garfield.travelnote.dal.mapper.NoteCommentDoMapper;

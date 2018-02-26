@@ -3,7 +3,6 @@ package com.garfield.travelnote.dal.mapper;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import com.garfield.travelnote.dal.domain.UserDo;
 import com.garfield.travelnote.dal.util.MyMapper;
-import com.zhexinit.ov.common.bean.RequestBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +13,6 @@ public interface UserDoMapper extends MyMapper<UserDo> {
     Integer selectUserByName(String name);
 
     UserBo selectUserInfo(Long id);
+
+    UserBo getLoginUser(@Param("login") String login);
 }

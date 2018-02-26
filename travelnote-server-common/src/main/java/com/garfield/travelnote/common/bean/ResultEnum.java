@@ -10,7 +10,7 @@ public enum ResultEnum implements IResultEnum {
     Success(0, "ok"),
 
     // third platform login
-    ThirdLoginError(101, "Third Login Error"),
+    loginFailed(101, "Login failed"),
     //用户相关
     registed(102, "Number Registered"),
     errorPassword(103, "Wrong User Name or Password"),

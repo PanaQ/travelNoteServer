@@ -1,6 +1,6 @@
 package com.garfield.travelnote.action;
 
-import com.garfield.travelnote.biz.service.impl.DivisionService;
+import com.garfield.travelnote.biz.service.DivisionService;
 import com.garfield.travelnote.common.model.bo.DivisionBo;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.util.ResponseUtil;

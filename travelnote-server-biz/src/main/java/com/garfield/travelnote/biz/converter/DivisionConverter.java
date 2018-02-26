@@ -1,4 +1,4 @@
-package com.garfield.travelnote.common.util;
+package com.garfield.travelnote.biz.converter;
 
 import com.garfield.travelnote.common.model.bo.DivisionBo;
 import com.garfield.travelnote.dal.domain.DivisionDo;

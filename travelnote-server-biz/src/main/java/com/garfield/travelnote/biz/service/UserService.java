@@ -1,8 +1,7 @@
-package com.garfield.travelnote.biz.service.impl;
+package com.garfield.travelnote.biz.service;
 
 import com.garfield.travelnote.common.model.bo.BaseUserBo;
 import com.garfield.travelnote.common.model.bo.UserBo;
-import com.zhexinit.ov.common.bean.RequestBean;
 
 /**
  * Created by Jingly on 2018/2/22.
@@ -18,5 +17,18 @@ public interface UserService {
      */
     int getUserByName(String name);
 
+    /**
+     * 查询用户信息
+     *
+     * @param id
+     * @return
+     */
     UserBo getUserInfo(Long id);
+
+    /**
+     * 登录
+     *
+     * @param login    登录账号 手机号或用户名
+     */
+    UserBo getUserByLogin(String login);
 }

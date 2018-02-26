@@ -14,22 +14,16 @@
     </parent>
     <properties>
         <guava.version>19.0</guava.version>
-        <spring.session.version>1.1.1.RELEASE</spring.session.version>
         <commons.lang3.version>3.4</commons.lang3.version>
-        <commons.collection.version>3.2.2</commons.collection.version>
         <mysql.connection.version>5.1.38</mysql.connection.version>
         <mybatis.version>3.3.1</mybatis.version>
         <mybatis.spring.version>1.2.5</mybatis.spring.version>
         <mybatis.helper.version>1.1.1</mybatis.helper.version>
         <mybatis.generator.version>1.3.2</mybatis.generator.version>
-        <jdk.version>1.7</jdk.version>
+        <jdk.version>1.8</jdk.version>
         <commons.io.version>2.4</commons.io.version>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <disconf.env>rd</disconf.env>
-        <disconf.conf_server_host>disconf-test.jingzheit.com:8081</disconf.conf_server_host>
-        <disconf.conf_server_zoo_action>121.196.200.108:8581</disconf.conf_server_zoo_action>
-        <auth.version>0.0.1-SNAPSHOT</auth.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <shiro.version>1.3.2</shiro.version>
     </properties>
     <dependencies>
@@ -40,10 +34,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,12 +53,6 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.43</version>
-        </dependency>
-
-        <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>${mybatis.helper.version}</version>
@@ -78,28 +62,6 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${mybatis.helper.version}</version>
         </dependency>
-        <!--shiro-->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-ehcache</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <!--shiro end-->
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -134,8 +96,11 @@
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
-
-
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.43</version>
+            </dependency>
             <!-- JSON -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -157,7 +122,6 @@
                 <groupId>com.zaxxer</groupId>
                 <artifactId>HikariCP</artifactId>
                 <version>2.4.7</version>
-                <!-- ????????????????Spring Boot???????????? -->
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
@@ -165,6 +129,27 @@
                 <version>3.0.0-RC1</version>
             </dependency>
 
+            <!--shiro-->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-ehcache</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
             <!-- captcha -->
             <dependency>
                 <groupId>cn.dreampie</groupId>

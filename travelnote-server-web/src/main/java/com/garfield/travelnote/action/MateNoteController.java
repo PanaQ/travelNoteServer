@@ -1,6 +1,6 @@
 package com.garfield.travelnote.action;
 
-import com.garfield.travelnote.biz.service.impl.MateNoteService;
+import com.garfield.travelnote.biz.service.MateNoteService;
 import com.garfield.travelnote.common.model.bo.AddMateNoteBo;
 import com.garfield.travelnote.common.model.bo.MateNoteBo;
 import com.zhexinit.ov.common.bean.RequestBean;

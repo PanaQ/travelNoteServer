@@ -1,4 +1,4 @@
-package com.garfield.travelnote.biz.service.impl;
+package com.garfield.travelnote.biz.service;
 
 /**
  * Created by Jingly on 2018/2/22.
