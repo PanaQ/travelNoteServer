@@ -1,7 +1,7 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.UserFollowService;
-import com.garfield.travelnote.common.bean.ResultEnum;
+import com.garfield.travelnote.common.util.ResultEnum;
 import com.garfield.travelnote.common.model.bo.UserFollowBo;
 import com.garfield.travelnote.dal.domain.UserFollowDo;
 import com.garfield.travelnote.dal.mapper.UserFollowDoMapper;

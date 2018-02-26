@@ -1,7 +1,7 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.MateNoteService;
-import com.garfield.travelnote.common.bean.ResultEnum;
+import com.garfield.travelnote.common.util.ResultEnum;
 import com.garfield.travelnote.common.model.bo.AddMateNoteBo;
 import com.garfield.travelnote.common.model.bo.MateNoteBo;
 import com.garfield.travelnote.dal.domain.MateNoteDo;
