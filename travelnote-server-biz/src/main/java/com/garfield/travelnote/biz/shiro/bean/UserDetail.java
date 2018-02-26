@@ -1,4 +1,4 @@
-package com.garfield.travelnote.biz.realm;
+package com.garfield.travelnote.biz.shiro.bean;
 
 import com.garfield.travelnote.common.model.bo.UserBo;
 import org.springframework.data.annotation.Id;

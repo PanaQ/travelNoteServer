@@ -1,6 +1,6 @@
 package com.garfield.travelnote.biz.repository;
 
-import com.garfield.travelnote.biz.realm.UserDetail;
+import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

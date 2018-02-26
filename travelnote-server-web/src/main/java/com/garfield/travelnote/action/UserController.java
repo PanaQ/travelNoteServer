@@ -1,6 +1,6 @@
 package com.garfield.travelnote.action;
 
-import com.garfield.travelnote.biz.realm.UserDetail;
+import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
 import com.garfield.travelnote.common.model.bo.LoginBean;

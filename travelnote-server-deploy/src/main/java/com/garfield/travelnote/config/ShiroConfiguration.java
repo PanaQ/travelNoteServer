@@ -1,6 +1,6 @@
 package com.garfield.travelnote.config;
 
-import com.garfield.travelnote.biz.realm.UserLoginRealm;
+import com.garfield.travelnote.biz.shiro.realm.UserLoginRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -29,7 +29,7 @@ public class ShiroConfiguration {
         bean.setLoginUrl("/user/login");
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/*.*", "anon");
+        filterChainDefinitionMap.put("/**", "tokenAuthenticationFilter");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }

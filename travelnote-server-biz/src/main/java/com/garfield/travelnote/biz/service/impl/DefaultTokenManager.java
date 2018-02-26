@@ -1,6 +1,6 @@
 package com.garfield.travelnote.biz.service.impl;
 
-import com.garfield.travelnote.biz.realm.UserDetail;
+import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.biz.repository.UserDetailRepository;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.common.model.bo.UserBo;
@@ -32,11 +32,18 @@ public class DefaultTokenManager implements TokenManager {
 
     @Override
     public UserDetail getUserDetail(String token) {
-        return userDetailRepository.findOne(token);
+        if (token==null){
+            return null;
+        }else{
+            return userDetailRepository.findOne(token);
+        }
     }
 
     @Override
     public boolean checkToken(String token) {
+        if (token==null){
+            return false;
+        }
         return userDetailRepository.exists(token);
     }
 

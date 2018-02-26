@@ -1,6 +1,6 @@
 package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.biz.realm.UserDetail;
+import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.common.model.bo.UserBo;
 
 /**
