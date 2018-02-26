@@ -12,4 +12,53 @@
     <result column="updated_at" property="updatedAt" jdbcType="INTEGER" />
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
+
+  <resultMap id="AttentionResultMap" type="com.garfield.travelnote.common.model.bo.AttentionBo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="selectAttentionList" resultMap="AttentionResultMap">
+  SELECT
+	id,
+	NAME,
+	avatar
+  FROM
+	USER
+  WHERE
+	id IN (
+		SELECT DISTINCT(follow_id) FROM user_follow
+		WHERE
+			user_id = #{id}
+		AND is_deleted = 0
+	)
+  AND is_deleted = 0
+  ORDER BY
+	created_at DESC
+  </select>
+
+  <select id="selectFansList" resultMap="AttentionResultMap">
+    SELECT
+    id,
+    NAME,
+    avatar
+    FROM
+    USER
+    WHERE
+    id IN (
+    SELECT DISTINCT(user_id) FROM user_follow
+    WHERE
+    follow_id = #{id}
+    AND is_deleted = 0
+    )
+    AND is_deleted = 0
+    ORDER BY
+    created_at DESC
+  </select>
+
+
 </mapper>

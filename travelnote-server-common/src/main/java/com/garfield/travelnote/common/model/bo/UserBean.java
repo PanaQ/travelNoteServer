@@ -1,10 +1,5 @@
 package com.garfield.travelnote.common.model.bo;
 
-/**
- * @author treezhu
- * @version 1.0
- * @date 2018/2/24 16:10
- */
 public class UserBean {
 
     private Long id;

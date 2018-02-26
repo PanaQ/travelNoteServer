@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 public class AesCryptUtil {
 
-    private static final String KEY = "TomShop123456789";
+    private static final String KEY = "TravelNote123456";
 
     /**
      * 算法
@@ -128,7 +128,7 @@ public class AesCryptUtil {
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println(encrypt("111111"));
+        System.out.println(encrypt("123456"));
     }
 
 }

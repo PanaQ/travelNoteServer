@@ -1,15 +1,18 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.UserFollowService;
+import com.garfield.travelnote.common.model.bo.AttentionBo;
 import com.garfield.travelnote.common.util.ResultEnum;
 import com.garfield.travelnote.common.model.bo.UserFollowBo;
 import com.garfield.travelnote.dal.domain.UserFollowDo;
 import com.garfield.travelnote.dal.mapper.UserFollowDoMapper;
 import com.zhexinit.ov.common.exception.CommonException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,8 +32,7 @@ public class UserFollowServiceImpl implements UserFollowService {
         }
 
         UserFollowDo userFollowDo = new UserFollowDo();
-        userFollowDo.setUserId(userFollowBo.getUserId());
-        userFollowDo.setFollowId(userFollowBo.getFollowId());
+        BeanUtils.copyProperties(userFollowBo,userFollowDo);
         userFollowDo.setIsDeleted(0);
 
         userFollowDoMapper.insertSelective(userFollowDo);
@@ -47,5 +49,17 @@ public class UserFollowServiceImpl implements UserFollowService {
         UserFollowDo userFollowDo = new UserFollowDo();
         userFollowDo.setIsDeleted(1);
         userFollowDoMapper.updateByExampleSelective(userFollowDo, example);
+    }
+
+    @Override
+    public List<AttentionBo> getAttentionList(Long id) {
+        List<AttentionBo> attentionBoList = userFollowDoMapper.selectAttentionList(id);
+        return attentionBoList;
+    }
+
+    @Override
+    public List<AttentionBo> getFansList(Long id) {
+        List<AttentionBo> attentionBoList = userFollowDoMapper.selectAttentionList(id);
+        return attentionBoList;
     }
 }

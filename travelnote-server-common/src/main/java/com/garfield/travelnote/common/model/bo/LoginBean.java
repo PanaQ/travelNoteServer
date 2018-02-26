@@ -1,10 +1,5 @@
 package com.garfield.travelnote.common.model.bo;
 
-/**
- * @author treezhu
- * @version 1.0
- * @date 2018/2/25 18:10
- */
 public class LoginBean {
 
     private String login;

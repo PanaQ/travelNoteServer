@@ -4,6 +4,7 @@ import com.garfield.travelnote.biz.service.NoteCommentService;
 import com.garfield.travelnote.common.model.bo.AddNoteCommentBo;
 import com.garfield.travelnote.dal.domain.NoteCommentDo;
 import com.garfield.travelnote.dal.mapper.NoteCommentDoMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,7 @@ public class NoteCommentServiceImpl implements NoteCommentService {
     @Override
     public void addNoteComment(AddNoteCommentBo addNoteCommentBo) {
         NoteCommentDo noteCommentDo = new NoteCommentDo();
-        noteCommentDo.setNoteId(addNoteCommentBo.getNoteId());
-        noteCommentDo.setUserId(addNoteCommentBo.getCommentUserId());
-        noteCommentDo.setComment(addNoteCommentBo.getComment());
+        BeanUtils.copyProperties(addNoteCommentBo, noteCommentDo);
         noteCommentDo.setIsDeleted(0);
 
         noteCommentDoMapper.insertSelective(noteCommentDo);

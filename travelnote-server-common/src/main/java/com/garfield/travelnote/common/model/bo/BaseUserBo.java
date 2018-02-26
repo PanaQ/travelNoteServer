@@ -2,12 +2,8 @@ package com.garfield.travelnote.common.model.bo;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Pattern;
 
-/**
- * Created by Jingly on 2018/2/22.
- */
 public class BaseUserBo {
     /**
      * 登录名

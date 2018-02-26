@@ -31,6 +31,9 @@
     <result column="comment_name" property="commentName" jdbcType="VARCHAR" />
   </resultMap>
 
+  <sql id="BaseField">
+    id,title,user_id,content,created_at,is_deleted
+  </sql>
 
   <sql id="NoteField">
     n.id,n.title,n.user_id,u.name user_name,n.content,n.created_at
@@ -50,6 +53,15 @@
     AND n.id = #{id}
   </select>
 
+
+  <select id="selectById" resultMap="BaseResultMap">
+    SELECT
+    <include refid="BaseField"/>
+    FROM note
+    WHERE is_deleted = 0
+    AND id = #{id}
+  </select>
+
   <select id="selectNoteCommentBoList" resultMap="NoteCommentResultMap">
     SELECT
     <include refid="NoteCommentField"/>
@@ -59,6 +71,34 @@
     AND u.is_deleted = 0
     AND nc.note_id = 1
     ORDER BY nc.created_at ASC
+  </select>
+
+
+  <select id="selectNoteList" resultMap="BaseResultMap"
+          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+    SELECT
+    <include refid="NoteField"/>
+    FROM note n
+    LEFT JOIN user u ON u.id = n.user_id
+    <where>
+      n.is_deleted = 0
+      AND u.is_deleted = 0
+      <if test="data!=null">
+        <if test="data.userId!=null">
+          AND n.user_id = #{data.userId}
+        </if>
+      </if>
+    </where>
+
+    <if test="sortField!=null">
+      order by n.created_at
+      <if test="sortOrder=='ASC'">
+        asc
+      </if>
+      <if test="sortOrder=='DESC'">
+        desc
+      </if>
+    </if>
   </select>
 
 </mapper>

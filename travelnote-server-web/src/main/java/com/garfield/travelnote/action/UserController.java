@@ -80,11 +80,10 @@ public class UserController {
     /**
      * 用户退出
      * @param token
-     * @param requestBean
      * @return
      */
     @PostMapping(value = "logout")
-    public ResponseBean<Void> logout(@RequestHeader("X-Auth-Token") String token, @RequestBody RequestBean<Void> requestBean){
+    public ResponseBean<Void> logout(@RequestHeader("X-Auth-Token") String token){
         tokenManager.removeToken(token);
         Subject subject = SecurityUtils.getSubject();
         if (subject != null) {

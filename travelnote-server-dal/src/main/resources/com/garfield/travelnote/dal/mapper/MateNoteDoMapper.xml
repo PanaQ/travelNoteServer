@@ -35,11 +35,17 @@
     <result column="updated_at" property="updatedAt" jdbcType="INTEGER" />
   </resultMap>
 
-  <sql id="MateNoteField">
-    mn.id,mn.user_id,u.name,mn.title,mn.content,mn.place,mn.start_time,mn.end_time,mn.phone,mn.created_at,mn.updated_at
+  <sql id="BaseField">
+    mn.id,mn.user_id,mn.title,mn.content,mn.place,mn.start_time,mn.end_time,
+    mn.phone,mn.created_at,mn.updated_at
   </sql>
 
-  <select id="selectById" resultMap="MateNoteResultMap">
+  <sql id="MateNoteField">
+    mn.id,mn.user_id,u.name,mn.title,mn.content,mn.place,mn.start_time,mn.end_time,
+    mn.phone,mn.created_at,mn.updated_at
+  </sql>
+
+  <select id="selectMateNoteById" resultMap="MateNoteResultMap">
     SELECT
     <include refid="MateNoteField"/>
     FROM mate_note mn
@@ -50,4 +56,45 @@
       AND u.is_deleted = 0
     </where>
   </select>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    SELECT
+    <include refid="BaseField"/>
+    FROM mate_note mn
+    LEFT JOIN user u ON u.id = mn.user_id
+    <where>
+      mn.is_deleted = 0
+      AND mn.id = #{id}
+      AND u.is_deleted = 0
+    </where>
+  </select>
+
+
+  <select id="selectMateNoteList" resultMap="BaseResultMap"
+          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+    SELECT
+    <include refid="BaseField"/>
+    FROM mate_note mn
+    LEFT JOIN user u ON u.id = mn.user_id
+    <where>
+      mn.is_deleted = 0
+      AND u.is_deleted = 0
+      <if test="data!=null">
+        <if test="data.userId!=null">
+          AND mn.user_id = #{data.userId}
+        </if>
+      </if>
+    </where>
+
+    <if test="sortField!=null">
+      order by mn.created_at
+      <if test="sortOrder=='ASC'">
+        asc
+      </if>
+      <if test="sortOrder=='DESC'">
+        desc
+      </if>
+    </if>
+  </select>
+
 </mapper>

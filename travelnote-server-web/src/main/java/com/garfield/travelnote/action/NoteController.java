@@ -3,8 +3,11 @@ package com.garfield.travelnote.action;
 import com.garfield.travelnote.biz.service.NoteService;
 import com.garfield.travelnote.common.model.bo.BaseNoteBo;
 import com.garfield.travelnote.common.model.bo.NoteBo;
+import com.garfield.travelnote.common.model.bo.NoteQuery;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
+import com.zhexinit.ov.common.query.ListBean;
+import com.zhexinit.ov.common.query.SortPagerQuery;
 import com.zhexinit.ov.common.util.DateUitl;
 import com.zhexinit.ov.common.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,28 @@ public class NoteController {
     }
 
     /**
+     * 删除游记
+     */
+    @PostMapping(value = "deleteNote")
+    public ResponseBean<Void> deleteNote(@RequestBody @Valid RequestBean<Long> param) {
+
+        Long id = param.getParam();
+        noteService.deleteNote(id);
+        return ResponseUtil.success();
+    }
+
+    /**
+     * 修改游记
+     */
+    @PostMapping(value = "modifyNote")
+    public ResponseBean<Void> modifyNote(@RequestBody @Valid RequestBean<BaseNoteBo> param) {
+
+        BaseNoteBo noteBo = param.getParam();
+        noteService.modifyNote(noteBo);
+        return ResponseUtil.success();
+    }
+
+    /**
      * 根据id查看游记
      */
     @PostMapping(value = "getNoteById")
@@ -73,7 +98,6 @@ public class NoteController {
 
     /**
      * 上传视频
-     * @param param
      * @param request
      * @return
      * @throws IOException
@@ -88,6 +112,15 @@ public class NoteController {
         File localFile = new File(dirPath+"/static"+fileName);
         file.transferTo(localFile);
         return ResponseUtil.success(serverUrl+fileName);
+    }
+
+    /**
+     * 获取游记列表
+     */
+    @PostMapping("getNoteList")
+    public ResponseBean<ListBean<BaseNoteBo>> getNoteList(@Valid @RequestBody RequestBean<SortPagerQuery<NoteQuery>> requestBean) {
+        SortPagerQuery<NoteQuery> sortPagerQuery = requestBean.getParam();
+        return ResponseUtil.success(noteService.getNoteList(sortPagerQuery));
     }
 
 

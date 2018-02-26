@@ -17,7 +17,7 @@ public class AddNoteCommentBo {
      * 留言用户id
      */
     @NotNull(message = "留言用户id不能为空")
-    private Long commentUserId;
+    private Long userId;
 
     /**
      * 留言内容
@@ -33,12 +33,12 @@ public class AddNoteCommentBo {
         this.noteId = noteId;
     }
 
-    public Long getCommentUserId() {
-        return commentUserId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCommentUserId(Long commentUserId) {
-        this.commentUserId = commentUserId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getComment() {

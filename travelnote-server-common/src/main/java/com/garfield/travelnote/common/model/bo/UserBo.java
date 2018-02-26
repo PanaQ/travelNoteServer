@@ -1,12 +1,7 @@
 package com.garfield.travelnote.common.model.bo;
 
-/**
- * Created by Jingly on 2018/2/22.
- */
 public class UserBo {
-    /**
-     * 主键
-     */
+
     private Long id;
 
     /**

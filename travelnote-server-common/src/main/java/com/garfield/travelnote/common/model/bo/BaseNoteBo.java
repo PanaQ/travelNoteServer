@@ -1,10 +1,5 @@
 package com.garfield.travelnote.common.model.bo;
 
-import javax.persistence.Column;
-
-/**
- * Created by Jingly on 2018/2/22.
- */
 public class BaseNoteBo {
 
     private Long id;

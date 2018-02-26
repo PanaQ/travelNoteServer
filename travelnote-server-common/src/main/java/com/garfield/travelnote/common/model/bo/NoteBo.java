@@ -1,11 +1,7 @@
 package com.garfield.travelnote.common.model.bo;
 
-import javax.persistence.Column;
 import java.util.List;
 
-/**
- * Created by Jingly on 2018/2/22.
- */
 public class NoteBo extends BaseNoteBo{
 
     /**

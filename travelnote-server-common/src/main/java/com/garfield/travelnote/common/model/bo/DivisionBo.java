@@ -1,10 +1,5 @@
 package com.garfield.travelnote.common.model.bo;
 
-import java.io.Serializable;
-
-/**
- * Created by frank on 2017-08-23 15:49.
- */
 public class DivisionBo  {
     private Long id;
 

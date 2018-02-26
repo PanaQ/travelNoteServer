@@ -24,6 +24,7 @@ public enum ResultEnum implements IResultEnum {
     userNotExist(304, "User not exist"),
     notFollowYourself(305, "Not follow yourself"),
     mateNoteNotExist(306, "MateNote not exist"),
+    noteNotExist(307, "Note not exist"),
 
     systemError(999, "System Error");
 
