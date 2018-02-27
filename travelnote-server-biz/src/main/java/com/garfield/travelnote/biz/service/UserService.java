@@ -31,4 +31,10 @@ public interface UserService {
      * @param login    登录账号 手机号或用户名
      */
     UserBo getUserByLogin(String login);
+
+    /**
+     * 修改我的信息
+     * @param newUserBo
+     */
+    void updateMyInfo(UserBo newUserBo);
 }

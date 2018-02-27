@@ -53,6 +53,14 @@ public class UserController {
         return ResponseUtil.success(userBo);
     }
 
+    @PostMapping(value = "updateMyInfo")
+    public ResponseBean<Void> updateMyInfo(@RequestBody @Valid RequestBean<UserBo> requestBean,UserBo userBo){
+        UserBo newUserBo = requestBean.getParam();
+        newUserBo.setId(userBo.getId());
+        userService.updateMyInfo(newUserBo);
+        return ResponseUtil.success();
+    }
+
 
     /**
      * 用户登录

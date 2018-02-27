@@ -1,7 +1,9 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.PasswordEncodeService;
+import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
+import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.common.model.bo.BaseUserBo;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import com.garfield.travelnote.common.util.AesCryptUtil;
@@ -10,6 +12,8 @@ import com.garfield.travelnote.dal.domain.UserDo;
 import com.garfield.travelnote.dal.mapper.UserDoMapper;
 import com.zhexinit.ov.common.exception.CommonException;
 import com.zhexinit.ov.common.util.DateUitl;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,14 +29,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncodeService passwordEncodeService;
 
+    @Autowired
+    private TokenManager tokenManager;
+
     @Override
     public void register(BaseUserBo baseUserBo) {
-
-//        String password = baseUserBo.getPassword();
-//        String confirmPassword = baseUserBo.getConfirmPassword();
-//        if (!Objects.equals(password, confirmPassword)) {
-//            throw new CommonException(ResultEnum.passwordNotEqual);
-//        }
 
         int count = getCountByName(baseUserBo.getName());
         if (count != 0) {
@@ -69,6 +70,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserBo getUserByLogin(String login) {
         return userDoMapper.getLoginUser(login);
+    }
+
+    @Override
+    public void updateMyInfo(UserBo newUserBo) {
+        UserDo userDo = new UserDo();
+        BeanUtils.copyProperties(newUserBo,userDo);
+        userDoMapper.updateByPrimaryKeySelective(userDo);
+        UserDetail userDetail = (UserDetail) SecurityUtils.getSubject().getPrincipal();
+        userDetail.setUserBo(newUserBo);
+        tokenManager.refreshUserDetails(userDetail);
     }
 
     private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {

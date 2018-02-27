@@ -1,7 +1,6 @@
 package com.garfield.travelnote.biz.service;
 
 import com.garfield.travelnote.common.model.bo.AttentionBo;
-import com.garfield.travelnote.common.model.bo.UserFollowBo;
 
 import java.util.List;
 
@@ -10,11 +9,11 @@ import java.util.List;
  */
 public interface UserFollowService {
 
-    void addFollow(UserFollowBo userFollowBo);
+    void addFollow(Long userId,Long followId);
 
-    void cancelFollow(UserFollowBo userFollowBo);
+    void cancelFollow(Long userId,Long followId);
 
-    List<AttentionBo> getAttentionList(Long id);
+    List<AttentionBo> getAttentionList(Long userId);
 
-    List<AttentionBo> getFansList(Long id);
+    List<AttentionBo> getFansList(Long userId);
 }
