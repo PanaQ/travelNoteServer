@@ -27,7 +27,7 @@ public class UserFollowServiceImpl implements UserFollowService {
         if (Objects.equals(userId, followId)) {
             throw new CommonException(ResultEnum.notFollowYourself);
         }
-        if (existFollow(userId,followId)){
+        if (isFollow(userId,followId)){
             throw new CommonException(ResultEnum.alreadyFollow);
         }
         UserFollowDo userFollowDo = new UserFollowDo();
@@ -59,7 +59,8 @@ public class UserFollowServiceImpl implements UserFollowService {
         return attentionBoList;
     }
 
-    private boolean existFollow(Long userId, Long followId) {
+    @Override
+    public Boolean isFollow(Long userId, Long followId) {
         Example example = new Example(UserFollowDo.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("userId", userId);

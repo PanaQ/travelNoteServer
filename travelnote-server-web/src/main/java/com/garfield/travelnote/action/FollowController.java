@@ -60,5 +60,15 @@ public class FollowController {
         return ResponseUtil.success(fansList);
     }
 
+    /**
+     * 查询是否关注
+     * @param requestBean
+     * @return
+     */
+    @PostMapping(value = "isFollow")
+    public ResponseBean<Boolean> isFollow(@RequestBody RequestBean<Long> requestBean,UserBo userBo){
+        return ResponseUtil.success(userFollowService.isFollow(userBo.getId(),requestBean.getParam()));
+    }
+
 
 }

@@ -16,4 +16,6 @@ public interface UserFollowService {
     List<AttentionBo> getAttentionList(Long userId);
 
     List<AttentionBo> getFansList(Long userId);
+
+    Boolean isFollow(Long id, Long param);
 }
