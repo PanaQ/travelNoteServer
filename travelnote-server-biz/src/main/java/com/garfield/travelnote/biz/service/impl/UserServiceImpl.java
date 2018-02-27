@@ -3,7 +3,6 @@ package com.garfield.travelnote.biz.service.impl;
 import com.garfield.travelnote.biz.service.PasswordEncodeService;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
-import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.common.model.bo.BaseUserBo;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import com.garfield.travelnote.common.util.AesCryptUtil;
@@ -12,7 +11,6 @@ import com.garfield.travelnote.dal.domain.UserDo;
 import com.garfield.travelnote.dal.mapper.UserDoMapper;
 import com.zhexinit.ov.common.exception.CommonException;
 import com.zhexinit.ov.common.util.DateUitl;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,12 +72,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateMyInfo(UserBo newUserBo) {
-        UserDo userDo = new UserDo();
-        BeanUtils.copyProperties(newUserBo,userDo);
-        userDoMapper.updateByPrimaryKeySelective(userDo);
-        UserDetail userDetail = (UserDetail) SecurityUtils.getSubject().getPrincipal();
-        userDetail.setUserBo(newUserBo);
-        tokenManager.refreshUserDetails(userDetail);
+        UserDo oldUserDo = userDoMapper.selectByPrimaryKey(newUserBo.getId());
+        if (!oldUserDo.getName().equals(newUserBo.getName())){
+            int existNameCount = getCountByName(newUserBo.getName());
+            if (existNameCount>0){
+                throw new CommonException(ResultEnum.userAlreadyExist);
+            }
+        }
+        if (!oldUserDo.getPhone().equals(newUserBo.getPhone())){
+            UserDo existUserPhoneDo = userDoMapper.getByPhone(newUserBo.getPhone());
+            if (existUserPhoneDo!=null){
+                throw new CommonException(ResultEnum.userAlreadyExist);
+            }
+        }
+        BeanUtils.copyProperties(newUserBo,oldUserDo);
+        userDoMapper.updateByPrimaryKeySelective(oldUserDo);
+//        UserDetail userDetail = (UserDetail) SecurityUtils.getSubject().getPrincipal();
+//        userDetail.setUserBo(newUserBo);
+//        tokenManager.refreshUserDetails(userDetail);
     }
 
     private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {
