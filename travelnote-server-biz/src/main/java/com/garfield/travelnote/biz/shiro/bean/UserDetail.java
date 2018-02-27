@@ -13,7 +13,7 @@ import java.util.Objects;
  * @version 1.0
  * @date 2018/2/25 17:15
  */
-@RedisHash
+@RedisHash("userDetail")
 public class UserDetail {
 
     @Id
