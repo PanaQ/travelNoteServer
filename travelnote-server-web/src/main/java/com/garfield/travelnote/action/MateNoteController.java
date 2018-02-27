@@ -76,7 +76,6 @@ public class MateNoteController {
         return ResponseUtil.success(mateNoteBo);
     }
 
-
     /**
      * 根据userId获取结伴游列表(获取别人的)
      */

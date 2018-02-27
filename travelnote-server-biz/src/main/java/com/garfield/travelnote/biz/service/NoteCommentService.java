@@ -7,5 +7,5 @@ import com.garfield.travelnote.common.model.bo.AddNoteCommentBo;
  */
 public interface NoteCommentService {
 
-    void addNoteComment(AddNoteCommentBo addNoteCommentBo);
+    void addNoteComment(AddNoteCommentBo addNoteCommentBo,Long userId);
 }

@@ -32,18 +32,27 @@ public interface UserService {
 
     /**
      * 用户注册
-     * @param param
+     * @param requestBean
      * @return
      */
     @POST("/user/register")
-    Observable<ResponseBean<Void>> register(@Body RequestBean<BaseUserBo> param);
+    Observable<ResponseBean<Void>> register(@Body RequestBean<BaseUserBo> requestBean);
 
     /**
      * 获取我的个人信息
-     * @param param
+     * @param requestBean
      * @return
      */
     @POST("/user/getMyInfo")
-    Observable<ResponseBean<UserBo>> getMyInfo(@Body RequestBean<Void> param);
+    Observable<ResponseBean<UserBo>> getMyInfo(@Body RequestBean<Void> requestBean);
+
+    /**
+     * 修改我的个人信息
+     * @param requestBean
+     * @return
+     */
+    @POST("/user/getMyInfo")
+    Observable<ResponseBean<UserBo>> updateMyInfo(@Body RequestBean<UserBo> requestBean);
+
 
 }

@@ -17,9 +17,10 @@ public class NoteCommentServiceImpl implements NoteCommentService {
     private NoteCommentDoMapper noteCommentDoMapper;
 
     @Override
-    public void addNoteComment(AddNoteCommentBo addNoteCommentBo) {
+    public void addNoteComment(AddNoteCommentBo addNoteCommentBo,Long userId) {
         NoteCommentDo noteCommentDo = new NoteCommentDo();
         BeanUtils.copyProperties(addNoteCommentBo, noteCommentDo);
+        noteCommentDo.setUserId(userId);
         noteCommentDo.setIsDeleted(0);
 
         noteCommentDoMapper.insertSelective(noteCommentDo);

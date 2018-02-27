@@ -30,7 +30,7 @@ public class DivisionDo {
      * 父级行政区划代码
      */
     @Column(name = "parent_code")
-    private char parentCode;
+    private String parentCode;
 
     /**
      * 创建时间
@@ -127,7 +127,7 @@ public class DivisionDo {
      *
      * @return parent_code - 父级行政区划代码
      */
-    public char getParentCode() {
+    public String getParentCode() {
         return parentCode;
     }
 
@@ -136,7 +136,7 @@ public class DivisionDo {
      *
      * @param parentCode 父级行政区划代码
      */
-    public void setParentCode(char parentCode) {
+    public void setParentCode(String parentCode) {
         this.parentCode = parentCode;
     }
 
