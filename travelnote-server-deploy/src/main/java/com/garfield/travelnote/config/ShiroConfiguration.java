@@ -29,6 +29,7 @@ public class ShiroConfiguration {
         bean.setLoginUrl("/user/login");
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/user/register","anno");
         filterChainDefinitionMap.put("/**", "tokenAuthenticationFilter");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;

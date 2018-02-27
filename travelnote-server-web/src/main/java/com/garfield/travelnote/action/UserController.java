@@ -12,6 +12,8 @@ import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.util.ResponseUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,7 @@ public class UserController {
      */
     @PostMapping(value = "register")
     public ResponseBean<Void> register(@RequestBody @Valid RequestBean<BaseUserBo> param) {
-
         BaseUserBo baseUserBo = param.getParam();
-
         userService.register(baseUserBo);
         return ResponseUtil.success();
     }
@@ -49,9 +49,7 @@ public class UserController {
      * 获取我的信息
      */
     @PostMapping(value = "getMyInfo")
-    public ResponseBean<UserBo> getMyInfo(@RequestBody RequestBean<Long> param){
-        Long id = param.getParam();
-        UserBo userBo = userService.getUserInfo(id);
+    public ResponseBean<UserBo> getMyInfo(UserBo userBo){
         return ResponseUtil.success(userBo);
     }
 
@@ -72,6 +70,10 @@ public class UserController {
             UserDetail userDetail = (UserDetail) subject.getPrincipals().getPrimaryPrincipal();
             response.setHeader("X-Auth-Token",userDetail.getToken());
             return ResponseUtil.success();
+        }catch (UnknownAccountException e){
+            return ResponseUtil.fail(ResultEnum.userNotExist);
+        }catch (IncorrectCredentialsException e){
+            return ResponseUtil.fail(ResultEnum.errorPassword);
         }catch (AuthenticationException e){
             return ResponseUtil.fail(ResultEnum.loginFailed);
         }

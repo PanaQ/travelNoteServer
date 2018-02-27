@@ -13,6 +13,8 @@ import com.zhexinit.ov.common.util.DateUitl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 /**
  * Created by Jingly on 2018/2/22.
  */
@@ -30,21 +32,19 @@ public class UserServiceImpl implements UserService {
 
         String password = baseUserBo.getPassword();
         String confirmPassword = baseUserBo.getConfirmPassword();
-        if (password != confirmPassword) {
+        if (!Objects.equals(password, confirmPassword)) {
             throw new CommonException(ResultEnum.passwordNotEqual);
         }
 
-        int count = getUserByName(baseUserBo.getName());
+        int count = getCountByName(baseUserBo.getName());
         if (count != 0) {
-            throw new CommonException(ResultEnum.illegalName);
+            throw new CommonException(ResultEnum.userAlreadyExist);
         }
 
         UserDo existUserDo = userDoMapper.getByPhone(baseUserBo.getPhone());
         if (existUserDo == null) {
             try {
-                String decPassword = AesCryptUtil.decrypt(baseUserBo.getPassword());
-                password = passwordEncodeService.encode(decPassword);
-                UserDo userDo = createAppUserDo(baseUserBo.getPhone(), password);
+                UserDo userDo = createAppUserDo(baseUserBo);
                 userDoMapper.insertSelective(userDo);
             } catch (Exception e) {
                 throw new CommonException(ResultEnum.systemError);
@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getUserByName(String name) {
-        return userDoMapper.selectUserByName(name);
+    public int getCountByName(String name) {
+        return userDoMapper.getCountByName(name);
     }
 
     @Override
@@ -73,10 +73,13 @@ public class UserServiceImpl implements UserService {
         return userDoMapper.getLoginUser(login);
     }
 
-    private UserDo createAppUserDo(String phone, String password) {
+    private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {
+        String decPassword = AesCryptUtil.decrypt(baseUserBo.getPassword());
+        String dbPassword = passwordEncodeService.encode(decPassword);
         UserDo appUserDo = new UserDo();
-        appUserDo.setPhone(phone);
-        appUserDo.setPassword(password);
+        appUserDo.setName(baseUserBo.getName());
+        appUserDo.setPhone(baseUserBo.getPhone());
+        appUserDo.setPassword(dbPassword);
         appUserDo.setIsDeleted(0);
         Long timestamp = DateUitl.getLongTimestamp();
         appUserDo.setCreatedAt(timestamp);

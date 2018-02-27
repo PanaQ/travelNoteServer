@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface UserDoMapper extends MyMapper<UserDo> {
     UserDo getByPhone(@Param("phone") String phone);
 
-    Integer selectUserByName(String name);
+    Integer getCountByName(String name);
 
     UserBo selectUserInfo(Long id);
 

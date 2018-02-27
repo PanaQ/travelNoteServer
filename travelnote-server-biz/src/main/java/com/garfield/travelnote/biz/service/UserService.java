@@ -15,7 +15,7 @@ public interface UserService {
     /**
      * 根据名称查询用户
      */
-    int getUserByName(String name);
+    int getCountByName(String name);
 
     /**
      * 查询用户信息

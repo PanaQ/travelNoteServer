@@ -47,7 +47,7 @@
         AND phone = #{phone}
     </select>
 
-    <select id="selectUserByName" resultType="java.lang.Integer">
+    <select id="getCountByName" resultType="java.lang.Integer">
         SELECT COUNT(id)
         FROM user
         WHERE is_deleted = 0 AND name = #{name}
