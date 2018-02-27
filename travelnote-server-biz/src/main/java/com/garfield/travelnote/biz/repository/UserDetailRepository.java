@@ -4,6 +4,8 @@ import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author treezhu
  * @version 1.0
@@ -11,4 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDetailRepository extends CrudRepository<UserDetail,String> {
+
+    List<UserDetail> findByUserId(Long userId);
 }

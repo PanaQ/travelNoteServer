@@ -3,6 +3,7 @@ package com.garfield.travelnote.biz.shiro.bean;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.util.Objects;
 
@@ -16,6 +17,9 @@ public class UserDetail {
 
     @Id
     private String token;
+
+    @Indexed
+    private Long userId;
 
     private UserBo userBo;
 
@@ -35,6 +39,13 @@ public class UserDetail {
         this.userBo = userBo;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     @Override
     public boolean equals(Object obj) {

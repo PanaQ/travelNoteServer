@@ -87,9 +87,7 @@ public class UserServiceImpl implements UserService {
         }
         BeanUtils.copyProperties(newUserBo,oldUserDo);
         userDoMapper.updateByPrimaryKeySelective(oldUserDo);
-//        UserDetail userDetail = (UserDetail) SecurityUtils.getSubject().getPrincipal();
-//        userDetail.setUserBo(newUserBo);
-//        tokenManager.refreshUserDetails(userDetail);
+        tokenManager.refreshUserDetails(newUserBo);
     }
 
     private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {

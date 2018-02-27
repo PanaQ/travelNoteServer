@@ -15,7 +15,7 @@ public interface TokenManager {
 
     boolean checkToken(String token);
 
-    void refreshUserDetails(UserDetail userDetail);
+    void refreshUserDetails(UserBo userBo);
 
     void removeToken(String token);
 }

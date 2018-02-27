@@ -1,12 +1,13 @@
 package com.garfield.travelnote.biz.service.impl;
 
-import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.biz.repository.UserDetailRepository;
 import com.garfield.travelnote.biz.service.TokenManager;
+import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,6 +25,7 @@ public class DefaultTokenManager implements TokenManager {
     public UserDetail createNewToken(UserBo userBo) {
         String token = UUID.randomUUID().toString();
         UserDetail userDetail = new UserDetail();
+        userDetail.setUserId(userBo.getId());
         userDetail.setToken(token);
         userDetail.setUserBo(userBo);
         userDetailRepository.save(userDetail);
@@ -48,8 +50,12 @@ public class DefaultTokenManager implements TokenManager {
     }
 
     @Override
-    public void refreshUserDetails(UserDetail userDetail) {
-        userDetailRepository.save(userDetail);
+    public void refreshUserDetails(UserBo userBo) {
+        List<UserDetail> userDetails = userDetailRepository.findByUserId(userBo.getId());
+        for (UserDetail userDetail: userDetails){
+            userDetail.setUserBo(userBo);
+            userDetailRepository.save(userDetail);
+        }
     }
 
     @Override
