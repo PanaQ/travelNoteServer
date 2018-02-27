@@ -1,5 +1,6 @@
 package com.garfield.travelnote.config;
 
+import com.garfield.travelnote.biz.shiro.filter.TokenAuthenticationFilter;
 import com.garfield.travelnote.biz.shiro.realm.UserLoginRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -8,10 +9,14 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author treezhu
@@ -21,15 +26,25 @@ import java.util.LinkedHashMap;
 @Configuration
 public class ShiroConfiguration {
 
+    @Bean
+    public FilterRegistrationBean registration(TokenAuthenticationFilter tokenAuthenticationFilter) {
+        FilterRegistrationBean registration = new FilterRegistrationBean(tokenAuthenticationFilter);
+        registration.setEnabled(false);
+        return registration;
+    }
+
     @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager manager) {
+    public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager manager, TokenAuthenticationFilter tokenAuthenticationFilter) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(manager);
         //配置登录的url和登录成功的url
         bean.setLoginUrl("/user/login");
+        Map<String,Filter> filters = new HashMap<>();
+        filters.put("tokenAuthenticationFilter",tokenAuthenticationFilter);
+        bean.setFilters(filters);
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/user/register","anno");
+        filterChainDefinitionMap.put("/user/register","anon");
         filterChainDefinitionMap.put("/**", "tokenAuthenticationFilter");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;

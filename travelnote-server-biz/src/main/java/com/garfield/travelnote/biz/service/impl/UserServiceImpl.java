@@ -13,8 +13,6 @@ import com.zhexinit.ov.common.util.DateUitl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
 /**
  * Created by Jingly on 2018/2/22.
  */
@@ -30,11 +28,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(BaseUserBo baseUserBo) {
 
-        String password = baseUserBo.getPassword();
-        String confirmPassword = baseUserBo.getConfirmPassword();
-        if (!Objects.equals(password, confirmPassword)) {
-            throw new CommonException(ResultEnum.passwordNotEqual);
-        }
+//        String password = baseUserBo.getPassword();
+//        String confirmPassword = baseUserBo.getConfirmPassword();
+//        if (!Objects.equals(password, confirmPassword)) {
+//            throw new CommonException(ResultEnum.passwordNotEqual);
+//        }
 
         int count = getCountByName(baseUserBo.getName());
         if (count != 0) {
