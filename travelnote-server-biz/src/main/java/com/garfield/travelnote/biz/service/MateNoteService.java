@@ -16,9 +16,13 @@ public interface MateNoteService {
 
     MateNoteBo getNoteBoById(Long id);
 
-    void deleteMateNote(Long id);
+    void deleteMateNote(Long id,Long userId);
 
-    void modifyMateNote(MateNoteBo mateNoteBo);
+    void modifyMateNote(MateNoteBo mateNoteBo,Long userId);
 
     ListBean<MateNoteBo> getMateNoteList(SortPagerQuery<MateNoteQuery> sortPagerQuery);
+
+    ListBean<MateNoteBo> getMateNoteListByUserId(SortPagerQuery<MateNoteQuery> sortPagerQuery);
+
+    ListBean<MateNoteBo> getMateNoteListByMine(SortPagerQuery sortPagerQuery, Long userId);
 }

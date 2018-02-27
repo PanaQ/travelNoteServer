@@ -19,4 +19,10 @@ public interface FollowService {
     @POST("/follow/cancelFollow")
     Observable<ResponseBean<MateNoteBo>> cancelFollow(@Body RequestBean<UserFollowBo> requestBean);
 
+    @POST("/follow/getAttentionList")
+    Observable<ResponseBean<MateNoteBo>> getAttentionList();
+
+    @POST("/follow/getFansList")
+    Observable<ResponseBean<MateNoteBo>> getFansList();
+
 }

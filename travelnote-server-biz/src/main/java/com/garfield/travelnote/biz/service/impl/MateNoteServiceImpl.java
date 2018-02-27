@@ -44,8 +44,8 @@ public class MateNoteServiceImpl implements MateNoteService {
     }
 
     @Override
-    public void deleteMateNote(Long id) {
-        MateNoteDo mateNoteDo = mateNoteDoMapper.selectById(id);
+    public void deleteMateNote(Long id,Long userId) {
+        MateNoteDo mateNoteDo = mateNoteDoMapper.selectById(id,userId);
         if(mateNoteDo == null){
             throw new CommonException(ResultEnum.mateNoteNotExist);
         }
@@ -54,8 +54,8 @@ public class MateNoteServiceImpl implements MateNoteService {
     }
 
     @Override
-    public void modifyMateNote(MateNoteBo mateNoteBo) {
-        MateNoteDo mateNoteDo = mateNoteDoMapper.selectById(mateNoteBo.getId());
+    public void modifyMateNote(MateNoteBo mateNoteBo,Long userId) {
+        MateNoteDo mateNoteDo = mateNoteDoMapper.selectById(mateNoteBo.getId(),userId);
         if(mateNoteDo == null){
             throw new CommonException(ResultEnum.mateNoteNotExist);
         }
@@ -66,7 +66,25 @@ public class MateNoteServiceImpl implements MateNoteService {
     @Override
     public ListBean<MateNoteBo> getMateNoteList(SortPagerQuery<MateNoteQuery> sortPagerQuery) {
         List<MateNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
-        List<MateNoteBo> baseNoteBos = mateNoteDoMapper.selectMateNoteList(sortPagerQuery);
+        List<MateNoteBo> baseNoteBos = mateNoteDoMapper.selectMateNoteList(sortPagerQuery,null);
+        int total = listCountry.size();
+
+        return new ListBean<MateNoteBo>(total,baseNoteBos);
+    }
+
+    @Override
+    public ListBean<MateNoteBo> getMateNoteListByUserId(SortPagerQuery<MateNoteQuery> sortPagerQuery) {
+        List<MateNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
+        List<MateNoteBo> baseNoteBos = mateNoteDoMapper.selectMateNoteListByUserId(sortPagerQuery);
+        int total = listCountry.size();
+
+        return new ListBean<MateNoteBo>(total,baseNoteBos);
+    }
+
+    @Override
+    public ListBean<MateNoteBo> getMateNoteListByMine(SortPagerQuery sortPagerQuery, Long userId) {
+        List<MateNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
+        List<MateNoteBo> baseNoteBos = mateNoteDoMapper.selectMateNoteList(sortPagerQuery,userId);
         int total = listCountry.size();
 
         return new ListBean<MateNoteBo>(total,baseNoteBos);

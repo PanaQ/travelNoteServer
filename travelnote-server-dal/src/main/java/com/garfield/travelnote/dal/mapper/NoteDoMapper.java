@@ -6,6 +6,7 @@ import com.garfield.travelnote.common.model.bo.NoteQuery;
 import com.garfield.travelnote.dal.domain.NoteDo;
 import com.garfield.travelnote.dal.util.MyMapper;
 import com.zhexinit.ov.common.query.SortPagerQuery;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,10 @@ import java.util.List;
 public interface NoteDoMapper extends MyMapper<NoteDo> {
     NoteBo selectNoteBoById(Long id);
 
-    List<BaseNoteBo> selectNoteList(SortPagerQuery<NoteQuery> sortPagerQuery);
+    NoteDo selectById(@Param("id") Long id, @Param("userId") Long userId);
 
-    NoteDo selectById(Long id);
+    List<BaseNoteBo> selectNoteListByUserId(SortPagerQuery<NoteQuery> sortPagerQuery);
+
+    List<BaseNoteBo> selectNoteList(@Param("sortPagerQuery") SortPagerQuery sortPagerQuery, @Param("userId") Long userId);
+
 }

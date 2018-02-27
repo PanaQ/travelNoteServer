@@ -41,8 +41,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void deleteNote(Long id) {
-        NoteDo noteDo = noteDoMapper.selectById(id);
+    public void deleteNote(Long id,Long userId) {
+        NoteDo noteDo = noteDoMapper.selectById(id,userId);
         if(noteDo == null){
             throw new CommonException(ResultEnum.noteNotExist);
         }
@@ -52,7 +52,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public void modifyNote(BaseNoteBo noteBo) {
-        NoteDo noteDo = noteDoMapper.selectById(noteBo.getId());
+        NoteDo noteDo = noteDoMapper.selectById(noteBo.getId(),noteBo.getUserId());
         if(noteDo == null){
             throw new CommonException(ResultEnum.noteNotExist);
         }
@@ -61,11 +61,31 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public ListBean<BaseNoteBo> getNoteList(SortPagerQuery<NoteQuery> sortPagerQuery) {
+    public ListBean<BaseNoteBo> getNoteListByUserId(SortPagerQuery<NoteQuery> sortPagerQuery) {
         List<BaseNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
-        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteList(sortPagerQuery);
+        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteListByUserId(sortPagerQuery);
         int total = listCountry.size();
 
         return new ListBean<>(total,baseNoteBos);
     }
+
+    @Override
+    public ListBean<BaseNoteBo> getNoteList(SortPagerQuery<NoteQuery> sortPagerQuery) {
+        List<BaseNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
+        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteList(sortPagerQuery,null);
+        int total = listCountry.size();
+
+        return new ListBean<>(total,baseNoteBos);
+    }
+
+    @Override
+    public ListBean<BaseNoteBo> getNoteListByMine(SortPagerQuery sortPagerQuery, Long userId) {
+        List<BaseNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
+        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteList(sortPagerQuery,userId);
+        int total = listCountry.size();
+
+        return new ListBean<>(total,baseNoteBos);
+    }
+
+
 }

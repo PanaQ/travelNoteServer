@@ -66,11 +66,11 @@
       mn.is_deleted = 0
       AND mn.id = #{id}
       AND u.is_deleted = 0
+      AND mn.user_id = #{userId}
     </where>
   </select>
 
-
-  <select id="selectMateNoteList" resultMap="BaseResultMap"
+  <select id="selectMateNoteListByUserId" resultMap="BaseResultMap"
           parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
     SELECT
     <include refid="BaseField"/>
@@ -95,6 +95,22 @@
         desc
       </if>
     </if>
+  </select>
+
+  <select id="selectMateNoteList" resultMap="BaseResultMap"
+          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+    SELECT
+    <include refid="BaseField"/>
+    FROM mate_note mn
+    LEFT JOIN user u ON u.id = mn.user_id
+    <where>
+      mn.is_deleted = 0
+      AND u.is_deleted = 0
+        <if test="userId!=null">
+          AND mn.user_id = #{userId}
+        </if>
+    </where>
+      order by mn.created_at desc
   </select>
 
 </mapper>

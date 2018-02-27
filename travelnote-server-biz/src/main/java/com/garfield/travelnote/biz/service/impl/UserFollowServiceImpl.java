@@ -59,7 +59,7 @@ public class UserFollowServiceImpl implements UserFollowService {
 
     @Override
     public List<AttentionBo> getFansList(Long id) {
-        List<AttentionBo> attentionBoList = userFollowDoMapper.selectAttentionList(id);
+        List<AttentionBo> attentionBoList = userFollowDoMapper.selectFansList(id);
         return attentionBoList;
     }
 }

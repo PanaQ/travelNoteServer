@@ -17,9 +17,13 @@ public interface NoteService {
 
     NoteBo getNoteBoById(Long id);
 
-    void deleteNote(Long id);
+    void deleteNote(Long id,Long userId);
 
     void modifyNote(BaseNoteBo noteBo);
 
+    ListBean<BaseNoteBo> getNoteListByUserId(SortPagerQuery<NoteQuery> sortPagerQuery);
+
     ListBean<BaseNoteBo> getNoteList(SortPagerQuery<NoteQuery> sortPagerQuery);
+
+    ListBean<BaseNoteBo> getNoteListByMine(SortPagerQuery sortPagerQuery, Long userId);
 }

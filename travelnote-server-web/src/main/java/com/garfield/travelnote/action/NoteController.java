@@ -4,6 +4,7 @@ import com.garfield.travelnote.biz.service.NoteService;
 import com.garfield.travelnote.common.model.bo.BaseNoteBo;
 import com.garfield.travelnote.common.model.bo.NoteBo;
 import com.garfield.travelnote.common.model.bo.NoteQuery;
+import com.garfield.travelnote.common.model.bo.UserBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.query.ListBean;
@@ -39,10 +40,13 @@ public class NoteController {
      * 发表游记
      */
     @PostMapping(value = "addNote")
-    public ResponseBean<Void> addNote(@RequestBody @Valid RequestBean<BaseNoteBo> param) {
-
-        BaseNoteBo noteBo = param.getParam();
-        noteService.addNote(noteBo);
+    public ResponseBean<Void> addNote(@RequestBody @Valid RequestBean<BaseNoteBo> param,UserBo userBo) {
+        if(userBo != null){
+            Long userId = userBo.getId();
+            BaseNoteBo noteBo = param.getParam();
+            noteBo.setUserId(userId);
+            noteService.addNote(noteBo);
+        }
         return ResponseUtil.success();
     }
 
@@ -50,10 +54,13 @@ public class NoteController {
      * 删除游记
      */
     @PostMapping(value = "deleteNote")
-    public ResponseBean<Void> deleteNote(@RequestBody @Valid RequestBean<Long> param) {
+    public ResponseBean<Void> deleteNote(@RequestBody @Valid RequestBean<Long> param,UserBo userBo) {
+        if(userBo != null){
+            Long userId = userBo.getId();
+            Long id = param.getParam();
+            noteService.deleteNote(id,userId);
+        }
 
-        Long id = param.getParam();
-        noteService.deleteNote(id);
         return ResponseUtil.success();
     }
 
@@ -61,10 +68,14 @@ public class NoteController {
      * 修改游记
      */
     @PostMapping(value = "modifyNote")
-    public ResponseBean<Void> modifyNote(@RequestBody @Valid RequestBean<BaseNoteBo> param) {
+    public ResponseBean<Void> modifyNote(@RequestBody @Valid RequestBean<BaseNoteBo> param,UserBo userBo) {
+        if(userBo != null){
+            Long userId = userBo.getId();
+            BaseNoteBo noteBo = param.getParam();
+            noteBo.setUserId(userId);
+            noteService.modifyNote(noteBo);
+        }
 
-        BaseNoteBo noteBo = param.getParam();
-        noteService.modifyNote(noteBo);
         return ResponseUtil.success();
     }
 
@@ -115,13 +126,36 @@ public class NoteController {
     }
 
     /**
-     * 获取游记列表
+     * 根据userId获取游记列表(获取别人的)
      */
-    @PostMapping("getNoteList")
-    public ResponseBean<ListBean<BaseNoteBo>> getNoteList(@Valid @RequestBody RequestBean<SortPagerQuery<NoteQuery>> requestBean) {
+    @PostMapping("getNoteListByUserId")
+    public ResponseBean<ListBean<BaseNoteBo>> getNoteListByUserId(@Valid @RequestBody RequestBean<SortPagerQuery<NoteQuery>> requestBean) {
         SortPagerQuery<NoteQuery> sortPagerQuery = requestBean.getParam();
-        return ResponseUtil.success(noteService.getNoteList(sortPagerQuery));
+        return ResponseUtil.success(noteService.getNoteListByUserId(sortPagerQuery));
     }
 
+    /**
+     * 获取自己的所有游记列表
+     */
+    @PostMapping("getNoteListByMine")
+    public ResponseBean<ListBean<BaseNoteBo>> getNoteListByMine(@Valid @RequestBody RequestBean<SortPagerQuery> requestBean,UserBo userBo) {
+        SortPagerQuery sortPagerQuery = requestBean.getParam();
+        Long userId = null;
+        if(userBo != null) {
+            userId = userBo.getId();
+        }
+        return ResponseUtil.success(noteService.getNoteListByMine(sortPagerQuery,userId));
+    }
+
+    /**
+     * 获取所有的游记列表
+     */
+    @PostMapping("getNoteList")
+    public ResponseBean<ListBean<BaseNoteBo>> getNoteList(@Valid @RequestBody RequestBean<SortPagerQuery> requestBean) {
+        SortPagerQuery sortPagerQuery = requestBean.getParam();
+        noteService.getNoteList(sortPagerQuery);
+
+        return ResponseUtil.success(noteService.getNoteList(sortPagerQuery));
+    }
 
 }

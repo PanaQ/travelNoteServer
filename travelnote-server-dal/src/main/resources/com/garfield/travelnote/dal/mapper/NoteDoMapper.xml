@@ -59,6 +59,7 @@
     <include refid="BaseField"/>
     FROM note
     WHERE is_deleted = 0
+    AND user_id = #{userId}
     AND id = #{id}
   </select>
 
@@ -83,13 +84,29 @@
     <where>
       n.is_deleted = 0
       AND u.is_deleted = 0
+      <if test="userId!=null">
+          AND n.user_id = #{userId}
+      </if>
+    </where>
+      order by n.created_at desc
+  </select>
+
+
+  <select id="selectNoteListByUserId" resultMap="BaseResultMap"
+          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+    SELECT
+    <include refid="NoteField"/>
+    FROM note n
+    LEFT JOIN user u ON u.id = n.user_id
+    <where>
+      n.is_deleted = 0
+      AND u.is_deleted = 0
       <if test="data!=null">
         <if test="data.userId!=null">
           AND n.user_id = #{data.userId}
         </if>
       </if>
     </where>
-
     <if test="sortField!=null">
       order by n.created_at
       <if test="sortOrder=='ASC'">
