@@ -10,7 +10,7 @@ import rx.Observable;
 public interface NoteCommentService {
 
     /**
-     * 添加留言
+     * 发表留言
      *
      * @param param
      * @return

@@ -2,6 +2,7 @@ package com.garfield.travelnote.action;
 
 import com.garfield.travelnote.biz.service.NoteCommentService;
 import com.garfield.travelnote.common.model.bo.AddNoteCommentBo;
+import com.garfield.travelnote.common.model.bo.UserBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.util.ResponseUtil;
@@ -27,10 +28,12 @@ public class NoteCommentController {
      * 发表留言
      */
     @PostMapping(value = "addNoteComment")
-    public ResponseBean<Void> addNoteComment(@RequestBody @Valid RequestBean<AddNoteCommentBo> param) {
-
-        AddNoteCommentBo addNoteCommentBo = param.getParam();
-        noteCommentService.addNoteComment(addNoteCommentBo);
+    public ResponseBean<Void> addNoteComment(@RequestBody @Valid RequestBean<AddNoteCommentBo> param,UserBo userBo) {
+        if(userBo != null){
+            Long userId = userBo.getId();
+            AddNoteCommentBo addNoteCommentBo = param.getParam();
+            noteCommentService.addNoteComment(addNoteCommentBo,userId);
+        }
         return ResponseUtil.success();
     }
 

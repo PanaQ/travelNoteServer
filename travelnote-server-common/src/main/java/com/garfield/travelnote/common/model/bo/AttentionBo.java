@@ -1,8 +1,5 @@
 package com.garfield.travelnote.common.model.bo;
 
-/**
- * Created by Jingly on 2018/2/26.
- */
 public class AttentionBo {
 
     private Long id;

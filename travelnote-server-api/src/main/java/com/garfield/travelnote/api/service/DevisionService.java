@@ -28,4 +28,12 @@ public interface DevisionService {
     @GET("/division/selectByParentCode")
     Observable<ResponseBean<List<DivisionBo>>> selectByParentCode(@Query("parentCode") String parentCode);
 
+    /**
+     * 查询
+     * @param code
+     * @return
+     */
+    @GET("/division/selectByCode")
+    Observable<ResponseBean<List<DivisionBo>>> selectByCode(@Query("code") String code);
+
 }

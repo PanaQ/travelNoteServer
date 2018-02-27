@@ -53,6 +53,9 @@ public class UserController {
         return ResponseUtil.success(userBo);
     }
 
+    /**
+     * 修改用户信息
+     */
     @PostMapping(value = "updateMyInfo")
     public ResponseBean<Void> updateMyInfo(@RequestBody @Valid RequestBean<UserBo> requestBean,UserBo userBo){
         UserBo newUserBo = requestBean.getParam();
