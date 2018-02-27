@@ -12,6 +12,7 @@ import com.zhexinit.ov.common.query.SortPagerQuery;
 import com.zhexinit.ov.common.util.DateUitl;
 import com.zhexinit.ov.common.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,15 @@ import java.io.IOException;
 @RequestMapping("note")
 public class NoteController {
 
-    private final static String serverUrl = "http://localhost:8080";
+    @Value("${server.url}")
+    private String serverUrl;
+
+    @Value("${server.pictureDir}")
+    private String pictureDir;
+
+    @Value("${server.videoDir}")
+    private String videoDir;
+
 
     @Autowired
     private NoteService noteService;
@@ -99,9 +108,8 @@ public class NoteController {
     public ResponseBean<String> uploadPicture(HttpServletRequest request) throws IOException {
         MultipartRequest multipartRequest = (MultipartRequest) request;
         MultipartFile file = multipartRequest.getFile("picture");
-        String dirName = "/upload/pic/";
         String dirPath = this.getClass().getClassLoader().getResource("").getPath();
-        String fileName = dirName+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
+        String fileName = pictureDir+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
         File localFile = new File(dirPath+"/static"+fileName);
         file.transferTo(localFile);
         return ResponseUtil.success(serverUrl+fileName);
@@ -117,9 +125,8 @@ public class NoteController {
     public ResponseBean<String> uploadVideo(HttpServletRequest request) throws IOException {
         MultipartRequest multipartRequest = (MultipartRequest) request;
         MultipartFile file = multipartRequest.getFile("video");
-        String dirName = "/upload/video/";
         String dirPath = this.getClass().getClassLoader().getResource("").getPath();
-        String fileName = dirName+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
+        String fileName = videoDir+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
         File localFile = new File(dirPath+"/static"+fileName);
         file.transferTo(localFile);
         return ResponseUtil.success(serverUrl+fileName);

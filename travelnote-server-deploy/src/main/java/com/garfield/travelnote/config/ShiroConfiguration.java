@@ -47,6 +47,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/user/register","anon");
         filterChainDefinitionMap.put("/note/getNoteList","anon");
         filterChainDefinitionMap.put("/mateNote/getMateNoteList","anon");
+        filterChainDefinitionMap.put("/division/*","anon");
         filterChainDefinitionMap.put("/**", "tokenAuthenticationFilter");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
