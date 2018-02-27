@@ -18,4 +18,6 @@ public interface TokenManager {
     void refreshUserDetails(UserBo userBo);
 
     void removeToken(String token);
+
+    void removeTokens(Long userId);
 }

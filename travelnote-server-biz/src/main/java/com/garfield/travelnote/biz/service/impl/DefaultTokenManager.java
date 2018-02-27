@@ -23,6 +23,7 @@ public class DefaultTokenManager implements TokenManager {
 
     @Override
     public UserDetail createNewToken(UserBo userBo) {
+        removeTokens(userBo.getId());
         String token = UUID.randomUUID().toString();
         UserDetail userDetail = new UserDetail();
         userDetail.setUserId(userBo.getId());
@@ -62,5 +63,12 @@ public class DefaultTokenManager implements TokenManager {
     @Override
     public void removeToken(String token) {
         userDetailRepository.delete(token);
+    }
+
+
+    @Override
+    public void removeTokens(Long userId){
+        List<UserDetail> userDetails = userDetailRepository.findByUserId(userId);
+        userDetailRepository.delete(userDetails);
     }
 }
