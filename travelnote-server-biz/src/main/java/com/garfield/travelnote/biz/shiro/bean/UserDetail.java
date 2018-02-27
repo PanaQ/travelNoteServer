@@ -3,6 +3,7 @@ package com.garfield.travelnote.biz.shiro.bean;
 import com.garfield.travelnote.common.model.bo.UserBo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.data.redis.core.index.Indexed;
 
 import java.util.Objects;
@@ -21,6 +22,9 @@ public class UserDetail {
     @Indexed
     private Long userId;
 
+    @TimeToLive
+    private Long expire;
+
     private UserBo userBo;
 
     public String getToken() {
@@ -37,6 +41,14 @@ public class UserDetail {
 
     public void setUserBo(UserBo userBo) {
         this.userBo = userBo;
+    }
+
+    public Long getExpire() {
+        return expire;
+    }
+
+    public void setExpire(Long expire) {
+        this.expire = expire;
     }
 
     public Long getUserId() {

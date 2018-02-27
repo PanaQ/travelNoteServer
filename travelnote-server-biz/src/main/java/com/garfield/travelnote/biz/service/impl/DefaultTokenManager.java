@@ -28,22 +28,23 @@ public class DefaultTokenManager implements TokenManager {
         userDetail.setUserId(userBo.getId());
         userDetail.setToken(token);
         userDetail.setUserBo(userBo);
+        userDetail.setExpire(3600 * 24 * 30L);
         userDetailRepository.save(userDetail);
         return userDetail;
     }
 
     @Override
     public UserDetail getUserDetail(String token) {
-        if (token==null){
+        if (token == null) {
             return null;
-        }else{
+        } else {
             return userDetailRepository.findOne(token);
         }
     }
 
     @Override
     public boolean checkToken(String token) {
-        if (token==null){
+        if (token == null) {
             return false;
         }
         return userDetailRepository.exists(token);
@@ -52,7 +53,7 @@ public class DefaultTokenManager implements TokenManager {
     @Override
     public void refreshUserDetails(UserBo userBo) {
         List<UserDetail> userDetails = userDetailRepository.findByUserId(userBo.getId());
-        for (UserDetail userDetail: userDetails){
+        for (UserDetail userDetail : userDetails) {
             userDetail.setUserBo(userBo);
             userDetailRepository.save(userDetail);
         }
