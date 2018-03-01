@@ -56,6 +56,8 @@ public class ScenicSpotDo {
     @Column(name = "is_deleted")
     private Integer isDeleted;
 
+    private Integer level;
+
     /**
      * 获取主键
      *
@@ -216,5 +218,19 @@ public class ScenicSpotDo {
      */
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    /**
+     * @return level
+     */
+    public Integer getLevel() {
+        return level;
+    }
+
+    /**
+     * @param level
+     */
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

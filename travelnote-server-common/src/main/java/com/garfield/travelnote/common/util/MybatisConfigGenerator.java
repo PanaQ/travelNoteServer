@@ -10,7 +10,7 @@ import java.sql.*;
 public class MybatisConfigGenerator {
 
 //    public String URL = "jdbc:mysql://localhost:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false";
-    public String URL = "jdbc:mysql://192.168.30.174:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false";
+    public String URL = "jdbc:mysql://localhost:3306/travel_note?characterEncoding=utf-8&amp;useSSL=false";
 
     public String USER = "root";
     public String PASSWORD = "123456";
@@ -27,7 +27,7 @@ public class MybatisConfigGenerator {
     public static void main(String[] args) {
         try {
             String schemaName = "travel_note";
-            String tableName = "administration_division";
+            String tableName = "scenic_spot";
             new MybatisConfigGenerator().generate(schemaName, tableName);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

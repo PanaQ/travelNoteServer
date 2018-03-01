@@ -44,7 +44,7 @@
 
         <!-- schema-库名,tableName-表名,catalog-生成的文件所在子包,需要enableSubPackages为true,domainObjectName-生成的Bean类名 -->
 
-        <table tableName="division" domainObjectName="DivisionDo" enableCountByExample="false">
+<!--        <table tableName="division" domainObjectName="DivisionDo" enableCountByExample="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="code" property="code" javaType="char" jdbcType="CHAR"/>
@@ -87,7 +87,7 @@
             <columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
-        </table>
+        </table>-->
         <table tableName="scenic_spot" domainObjectName="ScenicSpotDo" enableCountByExample="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
@@ -98,8 +98,9 @@
             <columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+            <columnOverride column="level" property="level" javaType="java.lang.Integer" jdbcType="TINYINT"/>
         </table>
-        <table tableName="user" domainObjectName="UserDo" enableCountByExample="false">
+        <!--<table tableName="user" domainObjectName="UserDo" enableCountByExample="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="gender" property="gender" javaType="java.lang.Integer" jdbcType="TINYINT"/>
@@ -117,7 +118,7 @@
             <columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
-        </table>
+        </table>-->
     </context>
 
 </generatorConfiguration>
