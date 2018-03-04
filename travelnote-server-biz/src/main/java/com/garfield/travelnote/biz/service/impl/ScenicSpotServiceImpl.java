@@ -41,7 +41,7 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
 
     @Override
     public List<ScenicSpotBo> sortByLevel(List<Long> scenicSpotBoIds) {
-        List<ScenicSpotDo> scenicSpotDos = scenicSpotDoMapper.selectByIds(scenicSpotBoIds);
+        List<ScenicSpotDo> scenicSpotDos = scenicSpotDoMapper.sortByLevel(scenicSpotBoIds);
         return ScenicSpotConverter.doToBos(scenicSpotDos);
     }
 }
