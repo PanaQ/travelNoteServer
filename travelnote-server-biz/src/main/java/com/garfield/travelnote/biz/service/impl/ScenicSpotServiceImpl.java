@@ -5,6 +5,7 @@ import com.garfield.travelnote.biz.service.ScenicSpotService;
 import com.garfield.travelnote.common.model.bo.ScenicSpotBo;
 import com.garfield.travelnote.dal.domain.ScenicSpotDo;
 import com.garfield.travelnote.dal.mapper.ScenicSpotDoMapper;
+import com.garfield.travelnote.dal.util.DistanceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -33,7 +34,8 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
 
     @Override
     public List<ScenicSpotBo> sortRoute(List<Long> scenicSpotBoIds) {
-
-        return null;
+        List<ScenicSpotDo> scenicSpotDos = scenicSpotDoMapper.selectByIds(scenicSpotBoIds);
+        scenicSpotDos = DistanceUtil.getOptimalRoute(scenicSpotDos);
+        return ScenicSpotConverter.doToBos(scenicSpotDos);
     }
 }

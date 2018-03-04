@@ -16,4 +16,16 @@
     <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="level" jdbcType="TINYINT" property="level" />
   </resultMap>
+  <sql id="base_column" >
+    id,division_id,name,play_time,longitude,latitude,created_at,updated_at,is_deleted,level
+  </sql>
+    <select id="selectByIds" resultMap="BaseResultMap">
+      SELECT <include refid="base_column"/>
+      FROM scenic_spot
+      WHERE id IN
+      <foreach collection="ids" index="id" open="(" close=")" separator="," item="ids">
+        #{id}
+      </foreach>
+      and is_deleted = 0
+     </select>
 </mapper>
