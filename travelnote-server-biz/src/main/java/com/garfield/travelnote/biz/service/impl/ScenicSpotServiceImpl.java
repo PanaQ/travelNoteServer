@@ -38,4 +38,10 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
         scenicSpotDos = DistanceUtil.getOptimalRoute(scenicSpotDos);
         return ScenicSpotConverter.doToBos(scenicSpotDos);
     }
+
+    @Override
+    public List<ScenicSpotBo> sortByLevel(List<Long> scenicSpotBoIds) {
+        List<ScenicSpotDo> scenicSpotDos = scenicSpotDoMapper.selectByIds(scenicSpotBoIds);
+        return ScenicSpotConverter.doToBos(scenicSpotDos);
+    }
 }

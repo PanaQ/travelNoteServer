@@ -43,4 +43,15 @@ public class ScenicSpotController {
         return ResponseUtil.success(scenicSpotBos);
     }
 
+    /**
+     *  出行按星级排序
+     * @param requestBean
+     * @return
+     */
+    @RequestMapping(value = "sortByLevel")
+    public ResponseBean<List<ScenicSpotBo>> sortByLevel(@RequestBody RequestBean<List<Long>> requestBean){
+        List<ScenicSpotBo> scenicSpotBos = scenicSpotService.sortByLevel(requestBean.getParam());
+        return ResponseUtil.success(scenicSpotBos);
+    }
+
 }

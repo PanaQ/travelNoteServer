@@ -23,9 +23,10 @@
       SELECT <include refid="base_column"/>
       FROM scenic_spot
       WHERE id IN
-      <foreach collection="ids" index="id" open="(" close=")" separator="," item="ids">
-        #{id}
+      <foreach collection="ids" index="index" open="(" close=")" separator="," item="item">
+        #{item}
       </foreach>
       and is_deleted = 0
+      order by level desc
      </select>
 </mapper>

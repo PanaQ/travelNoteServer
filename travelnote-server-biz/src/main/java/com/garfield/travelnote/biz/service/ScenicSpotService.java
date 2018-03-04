@@ -10,4 +10,5 @@ public interface ScenicSpotService {
 
     List<ScenicSpotBo> sortRoute(List<Long> scenicSpotBoIds);
 
+    List<ScenicSpotBo> sortByLevel(List<Long> scenicSpotBoIds);
 }
