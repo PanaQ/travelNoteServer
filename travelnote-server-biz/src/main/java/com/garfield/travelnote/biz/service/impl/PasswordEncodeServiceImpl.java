@@ -1,7 +1,6 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.PasswordEncodeService;
-import com.garfield.travelnote.common.util.AesCryptUtil;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,7 @@ public class PasswordEncodeServiceImpl implements PasswordEncodeService {
     @Override
     public boolean match(String inputPassword, String dbPassword) {
         try {
-            String decPassword = AesCryptUtil.decrypt(inputPassword);
-            String encodedPassword = encode(decPassword);
+            String encodedPassword = encode(inputPassword);
             if (encodedPassword.equals(dbPassword)) {
                 return true;
             }
@@ -31,8 +29,6 @@ public class PasswordEncodeServiceImpl implements PasswordEncodeService {
 
     public static void main(String[] args) throws Exception {
         String password = "123456";
-        String encPassword = AesCryptUtil.encrypt(password);
-        System.out.println(encPassword);
         String dbPassword = new String(Base64.encode(new Sha256Hash(password).getBytes()));
         System.out.println(dbPassword);
     }

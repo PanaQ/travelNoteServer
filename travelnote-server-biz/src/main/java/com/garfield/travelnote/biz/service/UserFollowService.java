@@ -1,6 +1,6 @@
 package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.common.model.bo.AttentionBo;
+import com.garfield.travelnote.api.model.bo.AttentionBo;
 
 import java.util.List;
 

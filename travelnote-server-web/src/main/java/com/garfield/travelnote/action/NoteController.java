@@ -1,14 +1,11 @@
 package com.garfield.travelnote.action;
 
 import com.garfield.travelnote.biz.service.NoteService;
-import com.garfield.travelnote.common.model.bo.BaseNoteBo;
-import com.garfield.travelnote.common.model.bo.NoteBo;
-import com.garfield.travelnote.common.model.bo.NoteQuery;
-import com.garfield.travelnote.common.model.bo.UserBo;
+import com.garfield.travelnote.api.model.bo.BaseNoteBo;
+import com.garfield.travelnote.api.model.bo.NoteBo;
+import com.garfield.travelnote.api.model.bo.UserBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
-import com.zhexinit.ov.common.query.ListBean;
-import com.zhexinit.ov.common.query.SortPagerQuery;
 import com.zhexinit.ov.common.util.DateUitl;
 import com.zhexinit.ov.common.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  用户Controller
@@ -136,33 +135,30 @@ public class NoteController {
      * 根据userId获取游记列表(获取别人的)
      */
     @PostMapping("getNoteListByUserId")
-    public ResponseBean<ListBean<BaseNoteBo>> getNoteListByUserId(@Valid @RequestBody RequestBean<SortPagerQuery<NoteQuery>> requestBean) {
-        SortPagerQuery<NoteQuery> sortPagerQuery = requestBean.getParam();
-        return ResponseUtil.success(noteService.getNoteListByUserId(sortPagerQuery));
+    public ResponseBean<List<BaseNoteBo>> getNoteListByUserId(@RequestBody RequestBean<Long> param) {
+        Long userId = param.getParam();
+        return ResponseUtil.success(noteService.getNoteListByUserId(userId));
     }
 
     /**
      * 获取自己的所有游记列表
      */
     @PostMapping("getNoteListByMine")
-    public ResponseBean<ListBean<BaseNoteBo>> getNoteListByMine(@Valid @RequestBody RequestBean<SortPagerQuery> requestBean,UserBo userBo) {
-        SortPagerQuery sortPagerQuery = requestBean.getParam();
-        Long userId = null;
+    public ResponseBean<List<BaseNoteBo>> getNoteListByMine(UserBo userBo) {
+        List<BaseNoteBo> noteBoList = new ArrayList<>();
         if(userBo != null) {
-            userId = userBo.getId();
+            Long userId = userBo.getId();
+            noteBoList = noteService.getNoteListByUserId(userId);
         }
-        return ResponseUtil.success(noteService.getNoteListByMine(sortPagerQuery,userId));
+        return ResponseUtil.success(noteBoList);
     }
 
     /**
      * 获取所有的游记列表
      */
     @PostMapping("getNoteList")
-    public ResponseBean<ListBean<BaseNoteBo>> getNoteList(@Valid @RequestBody RequestBean<SortPagerQuery> requestBean) {
-        SortPagerQuery sortPagerQuery = requestBean.getParam();
-        noteService.getNoteList(sortPagerQuery);
-
-        return ResponseUtil.success(noteService.getNoteList(sortPagerQuery));
+    public ResponseBean<List<BaseNoteBo>> getNoteList() {
+        return ResponseUtil.success(noteService.getNoteList());
     }
 
 }

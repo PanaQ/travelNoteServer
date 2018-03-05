@@ -1,7 +1,7 @@
 package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.common.model.bo.BaseUserBo;
-import com.garfield.travelnote.common.model.bo.UserBo;
+import com.garfield.travelnote.api.model.bo.BaseUserBo;
+import com.garfield.travelnote.api.model.bo.UserBo;
 
 /**
  * Created by Jingly on 2018/2/22.

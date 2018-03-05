@@ -1,7 +1,7 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.DivisionService;
-import com.garfield.travelnote.common.model.bo.DivisionBo;
+import com.garfield.travelnote.api.model.bo.DivisionBo;
 import com.garfield.travelnote.biz.converter.DivisionConverter;
 import com.garfield.travelnote.dal.domain.DivisionDo;
 import com.garfield.travelnote.dal.mapper.DivisionDoMapper;

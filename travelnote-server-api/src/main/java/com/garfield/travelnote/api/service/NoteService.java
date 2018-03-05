@@ -1,19 +1,18 @@
 package com.garfield.travelnote.api.service;
 
 import com.garfield.travelnote.api.helper.HTTPS;
-import com.garfield.travelnote.common.model.bo.BaseNoteBo;
-import com.garfield.travelnote.common.model.bo.NoteBo;
-import com.garfield.travelnote.common.model.bo.NoteQuery;
+import com.garfield.travelnote.api.model.bo.BaseNoteBo;
+import com.garfield.travelnote.api.model.bo.NoteBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
-import com.zhexinit.ov.common.query.ListBean;
-import com.zhexinit.ov.common.query.SortPagerQuery;
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import rx.Observable;
+
+import java.util.List;
 
 @HTTPS
 public interface NoteService {
@@ -42,18 +41,18 @@ public interface NoteService {
      * 根据userId获取游记列表(获取别人的)
      */
     @POST("/note/getNoteListByUserId")
-    Observable<ResponseBean<ListBean<BaseNoteBo>>> getNoteListByUserId(@Body RequestBean<SortPagerQuery<NoteQuery>> requestBean);
+    Observable<ResponseBean<List<BaseNoteBo>>> getNoteListByUserId(@Body RequestBean<Long> requestBean);
 
     /**
      * 获取自己的所有游记列表
      */
     @POST("/note/getNoteListByMine")
-    Observable<ResponseBean<ListBean<BaseNoteBo>>> getNoteListByMine(@Body RequestBean<SortPagerQuery> requestBean);
+    Observable<ResponseBean<List<BaseNoteBo>>> getNoteListByMine();
 
     /**
      * 获取所有的游记列表
      */
     @POST("/note/getNoteList")
-    Observable<ResponseBean<ListBean<BaseNoteBo>>> getNoteList(@Body RequestBean<SortPagerQuery> requestBean);
+    Observable<ResponseBean<List<BaseNoteBo>>> getNoteList();
 
 }

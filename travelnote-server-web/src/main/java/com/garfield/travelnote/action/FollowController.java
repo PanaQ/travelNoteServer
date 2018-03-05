@@ -1,8 +1,8 @@
 package com.garfield.travelnote.action;
 
 import com.garfield.travelnote.biz.service.UserFollowService;
-import com.garfield.travelnote.common.model.bo.AttentionBo;
-import com.garfield.travelnote.common.model.bo.UserBo;
+import com.garfield.travelnote.api.model.bo.AttentionBo;
+import com.garfield.travelnote.api.model.bo.UserBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.util.ResponseUtil;

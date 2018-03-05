@@ -20,7 +20,7 @@
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
     </resultMap>
 
-    <resultMap id="UserResultMap" type="com.garfield.travelnote.common.model.bo.UserBo">
+    <resultMap id="UserResultMap" type="com.garfield.travelnote.api.model.bo.UserBo">
         <!--
           WARNING - @mbg.generated
         -->

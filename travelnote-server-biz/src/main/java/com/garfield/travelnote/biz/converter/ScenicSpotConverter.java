@@ -1,6 +1,6 @@
 package com.garfield.travelnote.biz.converter;
 
-import com.garfield.travelnote.common.model.bo.ScenicSpotBo;
+import com.garfield.travelnote.api.model.bo.ScenicSpotBo;
 import com.garfield.travelnote.dal.domain.ScenicSpotDo;
 import org.springframework.beans.BeanUtils;
 

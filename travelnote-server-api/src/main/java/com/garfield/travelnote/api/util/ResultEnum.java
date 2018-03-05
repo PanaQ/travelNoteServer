@@ -1,4 +1,4 @@
-package com.garfield.travelnote.common.util;
+package com.garfield.travelnote.api.util;
 
 import com.zhexinit.ov.common.model.IResultEnum;
 

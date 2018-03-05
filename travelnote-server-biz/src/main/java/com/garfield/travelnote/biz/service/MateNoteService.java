@@ -1,11 +1,9 @@
 package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.common.model.bo.AddMateNoteBo;
-import com.garfield.travelnote.common.model.bo.MateNoteBo;
-import com.garfield.travelnote.common.model.bo.MateNoteQuery;
-import com.garfield.travelnote.common.model.bo.NoteQuery;
-import com.zhexinit.ov.common.query.ListBean;
-import com.zhexinit.ov.common.query.SortPagerQuery;
+import com.garfield.travelnote.api.model.bo.AddMateNoteBo;
+import com.garfield.travelnote.api.model.bo.MateNoteBo;
+
+import java.util.List;
 
 /**
  * Created by Jingly on 2018/2/22.
@@ -20,9 +18,8 @@ public interface MateNoteService {
 
     void modifyMateNote(MateNoteBo mateNoteBo,Long userId);
 
-    ListBean<MateNoteBo> getMateNoteList(SortPagerQuery<MateNoteQuery> sortPagerQuery);
+    List<MateNoteBo> getMateNoteList();
 
-    ListBean<MateNoteBo> getMateNoteListByUserId(SortPagerQuery<MateNoteQuery> sortPagerQuery);
+    List<MateNoteBo> getMateNoteListByUserId(Long userId);
 
-    ListBean<MateNoteBo> getMateNoteListByMine(SortPagerQuery sortPagerQuery, Long userId);
 }

@@ -1,21 +1,16 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.NoteService;
-import com.garfield.travelnote.common.model.bo.BaseNoteBo;
-import com.garfield.travelnote.common.model.bo.NoteBo;
-import com.garfield.travelnote.common.model.bo.NoteQuery;
-import com.garfield.travelnote.common.util.ResultEnum;
+import com.garfield.travelnote.api.model.bo.BaseNoteBo;
+import com.garfield.travelnote.api.model.bo.NoteBo;
+import com.garfield.travelnote.api.util.ResultEnum;
 import com.garfield.travelnote.dal.domain.NoteDo;
 import com.garfield.travelnote.dal.mapper.NoteDoMapper;
-import com.github.pagehelper.PageHelper;
 import com.zhexinit.ov.common.exception.CommonException;
-import com.zhexinit.ov.common.query.ListBean;
-import com.zhexinit.ov.common.query.SortPagerQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,30 +56,15 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public ListBean<BaseNoteBo> getNoteListByUserId(SortPagerQuery<NoteQuery> sortPagerQuery) {
-        List<BaseNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
-        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteListByUserId(sortPagerQuery);
-        int total = listCountry.size();
-
-        return new ListBean<>(total,baseNoteBos);
+    public List<BaseNoteBo> getNoteListByUserId(Long userId) {
+        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteListByUserId(userId);
+        return baseNoteBos;
     }
 
     @Override
-    public ListBean<BaseNoteBo> getNoteList(SortPagerQuery<NoteQuery> sortPagerQuery) {
-        List<BaseNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
-        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteList(sortPagerQuery,null);
-        int total = listCountry.size();
-
-        return new ListBean<>(total,baseNoteBos);
-    }
-
-    @Override
-    public ListBean<BaseNoteBo> getNoteListByMine(SortPagerQuery sortPagerQuery, Long userId) {
-        List<BaseNoteBo> listCountry = PageHelper.startPage(sortPagerQuery.getCurrent(), sortPagerQuery.getPageSize());
-        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteList(sortPagerQuery,userId);
-        int total = listCountry.size();
-
-        return new ListBean<>(total,baseNoteBos);
+    public List<BaseNoteBo> getNoteList() {
+        List<BaseNoteBo> baseNoteBos = noteDoMapper.selectNoteList();
+        return baseNoteBos;
     }
 
 

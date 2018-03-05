@@ -18,7 +18,7 @@
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
 
-  <resultMap id="MateNoteResultMap" type="com.garfield.travelnote.common.model.bo.MateNoteBo" >
+  <resultMap id="MateNoteResultMap" type="com.garfield.travelnote.api.model.bo.MateNoteBo" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -70,8 +70,7 @@
     </where>
   </select>
 
-  <select id="selectMateNoteListByUserId" resultMap="BaseResultMap"
-          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+  <select id="selectMateNoteListByUserId" resultMap="BaseResultMap">
     SELECT
     <include refid="BaseField"/>
     FROM mate_note mn
@@ -79,26 +78,13 @@
     <where>
       mn.is_deleted = 0
       AND u.is_deleted = 0
-      <if test="data!=null">
-        <if test="data.userId!=null">
-          AND mn.user_id = #{data.userId}
-        </if>
-      </if>
+      AND mn.user_id = #{userId}
     </where>
 
-    <if test="sortField!=null">
-      order by mn.created_at
-      <if test="sortOrder=='ASC'">
-        asc
-      </if>
-      <if test="sortOrder=='DESC'">
-        desc
-      </if>
-    </if>
+      ORDER BY mn.created_at DESC
   </select>
 
-  <select id="selectMateNoteList" resultMap="BaseResultMap"
-          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+  <select id="selectMateNoteList" resultMap="BaseResultMap">
     SELECT
     <include refid="BaseField"/>
     FROM mate_note mn
@@ -106,9 +92,6 @@
     <where>
       mn.is_deleted = 0
       AND u.is_deleted = 0
-        <if test="userId!=null">
-          AND mn.user_id = #{userId}
-        </if>
     </where>
       order by mn.created_at desc
   </select>

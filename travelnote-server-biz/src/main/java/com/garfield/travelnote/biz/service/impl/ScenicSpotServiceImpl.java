@@ -2,7 +2,7 @@ package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.converter.ScenicSpotConverter;
 import com.garfield.travelnote.biz.service.ScenicSpotService;
-import com.garfield.travelnote.common.model.bo.ScenicSpotBo;
+import com.garfield.travelnote.api.model.bo.ScenicSpotBo;
 import com.garfield.travelnote.dal.domain.ScenicSpotDo;
 import com.garfield.travelnote.dal.mapper.ScenicSpotDoMapper;
 import com.garfield.travelnote.dal.util.DistanceUtil;

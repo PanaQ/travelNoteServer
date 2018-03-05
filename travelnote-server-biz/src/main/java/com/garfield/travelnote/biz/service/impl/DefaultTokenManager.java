@@ -3,7 +3,7 @@ package com.garfield.travelnote.biz.service.impl;
 import com.garfield.travelnote.biz.repository.UserDetailRepository;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.shiro.bean.UserDetail;
-import com.garfield.travelnote.common.model.bo.UserBo;
+import com.garfield.travelnote.api.model.bo.UserBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

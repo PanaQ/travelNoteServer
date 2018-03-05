@@ -1,12 +1,15 @@
 package com.garfield.travelnote.api.service;
 
 import com.garfield.travelnote.api.helper.HTTPS;
-import com.garfield.travelnote.common.model.bo.MateNoteBo;
+import com.garfield.travelnote.api.model.bo.AttentionBo;
+import com.garfield.travelnote.api.model.bo.MateNoteBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import rx.Observable;
+
+import java.util.List;
 
 @HTTPS
 public interface FollowService {
@@ -21,9 +24,9 @@ public interface FollowService {
     Observable<ResponseBean<Boolean>> isFollow(@Body RequestBean<Long> requestBean);
 
     @POST("/follow/getAttentionList")
-    Observable<ResponseBean<MateNoteBo>> getAttentionList();
+    Observable<ResponseBean<List<AttentionBo>>> getAttentionList();
 
     @POST("/follow/getFansList")
-    Observable<ResponseBean<MateNoteBo>> getFansList();
+    Observable<ResponseBean<List<AttentionBo>>> getFansList();
 
 }

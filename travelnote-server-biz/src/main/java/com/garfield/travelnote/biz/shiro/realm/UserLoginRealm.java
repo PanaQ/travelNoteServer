@@ -4,7 +4,7 @@ import com.garfield.travelnote.biz.service.PasswordEncodeService;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
 import com.garfield.travelnote.biz.shiro.bean.UserDetail;
-import com.garfield.travelnote.common.model.bo.UserBo;
+import com.garfield.travelnote.api.model.bo.UserBo;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;

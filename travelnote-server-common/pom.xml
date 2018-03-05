@@ -36,8 +36,8 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.zhexinit.ov.common</groupId>
-            <artifactId>common-util</artifactId>
+            <groupId>com.garfield.travelnote</groupId>
+            <artifactId>travelnote-server-api</artifactId>
         </dependency>
     </dependencies>
 </project>

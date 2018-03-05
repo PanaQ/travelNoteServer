@@ -1,11 +1,11 @@
 package com.garfield.travelnote.api.service;
 
-import com.garfield.travelnote.common.model.bo.AddNoteCommentBo;
+import com.garfield.travelnote.api.model.bo.AddNoteCommentBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import rx.Observable;
 
 public interface NoteCommentService {
 

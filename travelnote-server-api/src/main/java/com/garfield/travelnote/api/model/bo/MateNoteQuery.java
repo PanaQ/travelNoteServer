@@ -1,8 +1,8 @@
-package com.garfield.travelnote.common.model.bo;
+package com.garfield.travelnote.api.model.bo;
 
 import javax.validation.constraints.NotNull;
 
-public class NoteQuery{
+public class MateNoteQuery {
 
     /**
      * 用户id

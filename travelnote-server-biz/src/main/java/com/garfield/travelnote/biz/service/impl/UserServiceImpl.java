@@ -3,10 +3,9 @@ package com.garfield.travelnote.biz.service.impl;
 import com.garfield.travelnote.biz.service.PasswordEncodeService;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
-import com.garfield.travelnote.common.model.bo.BaseUserBo;
-import com.garfield.travelnote.common.model.bo.UserBo;
-import com.garfield.travelnote.common.util.AesCryptUtil;
-import com.garfield.travelnote.common.util.ResultEnum;
+import com.garfield.travelnote.api.model.bo.BaseUserBo;
+import com.garfield.travelnote.api.model.bo.UserBo;
+import com.garfield.travelnote.api.util.ResultEnum;
 import com.garfield.travelnote.dal.domain.UserDo;
 import com.garfield.travelnote.dal.mapper.UserDoMapper;
 import com.zhexinit.ov.common.exception.CommonException;
@@ -91,8 +90,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {
-        String decPassword = AesCryptUtil.decrypt(baseUserBo.getPassword());
-        String dbPassword = passwordEncodeService.encode(decPassword);
+        String dbPassword = passwordEncodeService.encode(baseUserBo.getPassword());
         UserDo appUserDo = new UserDo();
         appUserDo.setName(baseUserBo.getName());
         appUserDo.setPhone(baseUserBo.getPhone());

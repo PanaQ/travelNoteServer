@@ -14,7 +14,7 @@
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
 
-  <resultMap id="NoteBoResultMap" type="com.garfield.travelnote.common.model.bo.NoteBo" >
+  <resultMap id="NoteBoResultMap" type="com.garfield.travelnote.api.model.bo.NoteBo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
@@ -24,7 +24,7 @@
     <collection property="noteCommentBoList" column="id" select="selectNoteCommentBoList"/>
   </resultMap>
 
-  <resultMap id="NoteCommentResultMap" type="com.garfield.travelnote.common.model.bo.NoteCommentBo" >
+  <resultMap id="NoteCommentResultMap" type="com.garfield.travelnote.api.model.bo.NoteCommentBo" >
     <result column="note_id" property="noteId" jdbcType="INTEGER" />
     <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
@@ -70,13 +70,12 @@
     LEFT JOIN user u ON u.id = nc.user_id
     WHERE nc.is_deleted = 0
     AND u.is_deleted = 0
-    AND nc.note_id = 1
+    AND nc.note_id = #{id}
     ORDER BY nc.created_at ASC
   </select>
 
 
-  <select id="selectNoteList" resultMap="BaseResultMap"
-          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+  <select id="selectNoteList" resultMap="BaseResultMap">
     SELECT
     <include refid="NoteField"/>
     FROM note n
@@ -84,16 +83,12 @@
     <where>
       n.is_deleted = 0
       AND u.is_deleted = 0
-      <if test="userId!=null">
-          AND n.user_id = #{userId}
-      </if>
     </where>
       order by n.created_at desc
   </select>
 
 
-  <select id="selectNoteListByUserId" resultMap="BaseResultMap"
-          parameterType="com.zhexinit.ov.common.query.SortPagerQuery">
+  <select id="selectNoteListByUserId" resultMap="BaseResultMap">
     SELECT
     <include refid="NoteField"/>
     FROM note n
@@ -101,21 +96,9 @@
     <where>
       n.is_deleted = 0
       AND u.is_deleted = 0
-      <if test="data!=null">
-        <if test="data.userId!=null">
-          AND n.user_id = #{data.userId}
-        </if>
-      </if>
+      AND n.user_id = #{data.userId}
     </where>
-    <if test="sortField!=null">
-      order by n.created_at
-      <if test="sortOrder=='ASC'">
-        asc
-      </if>
-      <if test="sortOrder=='DESC'">
-        desc
-      </if>
-    </if>
+    ORDER BY n.created_at DESC
   </select>
 
 </mapper>

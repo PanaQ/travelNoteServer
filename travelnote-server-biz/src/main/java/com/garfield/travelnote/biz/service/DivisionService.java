@@ -1,8 +1,6 @@
 package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.common.model.bo.AddMateNoteBo;
-import com.garfield.travelnote.common.model.bo.DivisionBo;
-import com.garfield.travelnote.common.model.bo.MateNoteBo;
+import com.garfield.travelnote.api.model.bo.DivisionBo;
 
 import java.util.List;
 

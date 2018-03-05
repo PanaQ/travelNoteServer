@@ -1,14 +1,14 @@
 package com.garfield.travelnote.api.service;
 
 import com.garfield.travelnote.api.helper.HTTPS;
-import com.garfield.travelnote.common.model.bo.*;
+import com.garfield.travelnote.api.model.bo.*;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
-import com.zhexinit.ov.common.query.ListBean;
-import com.zhexinit.ov.common.query.SortPagerQuery;
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import rx.Observable;
+
+import java.util.List;
 
 @HTTPS
 public interface MateNoteService {
@@ -29,18 +29,18 @@ public interface MateNoteService {
      * 根据userId获取结伴游列表(获取别人的)
      */
     @POST("/mateNote/getMateNoteListByUserId")
-    Observable<ResponseBean<ListBean<MateNoteBo>>> getMateNoteListByUserId(@Body RequestBean<SortPagerQuery<MateNoteQuery>> requestBean);
+    Observable<ResponseBean<List<MateNoteBo>>> getMateNoteListByUserId(@Body RequestBean<Long> requestBean);
 
     /**
      * 获取自己的所有结伴游列表
      */
     @POST("/mateNote/getNoteListByMine")
-    Observable<ResponseBean<ListBean<MateNoteBo>>> getMateNoteListByMine(@Body RequestBean<SortPagerQuery> requestBean);
+    Observable<ResponseBean<List<MateNoteBo>>> getMateNoteListByMine();
 
     /**
      * 获取所有的结伴游列表
      */
     @POST("/mateNote/getMateNoteList")
-    Observable<ResponseBean<ListBean<MateNoteBo>>> getMateNoteList(@Body RequestBean<SortPagerQuery> requestBean);
+    Observable<ResponseBean<List<MateNoteBo>>> getMateNoteList();
 
 }

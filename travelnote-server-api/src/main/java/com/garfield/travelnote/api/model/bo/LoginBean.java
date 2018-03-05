@@ -1,4 +1,4 @@
-package com.garfield.travelnote.common.model.bo;
+package com.garfield.travelnote.api.model.bo;
 
 public class LoginBean {
 

@@ -1,8 +1,8 @@
 package com.garfield.travelnote.biz.service.impl;
 
 import com.garfield.travelnote.biz.service.UserFollowService;
-import com.garfield.travelnote.common.model.bo.AttentionBo;
-import com.garfield.travelnote.common.util.ResultEnum;
+import com.garfield.travelnote.api.model.bo.AttentionBo;
+import com.garfield.travelnote.api.util.ResultEnum;
 import com.garfield.travelnote.dal.domain.UserFollowDo;
 import com.garfield.travelnote.dal.mapper.UserFollowDoMapper;
 import com.zhexinit.ov.common.exception.CommonException;

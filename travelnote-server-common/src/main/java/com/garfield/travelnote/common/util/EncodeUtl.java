@@ -26,9 +26,6 @@ public class EncodeUtl {
 
     /**
      * 获取文件的MD5
-     *
-     * @param file
-     * @return
      */
     public static String getMd5ByFile(File file) {
         String value = null;
@@ -56,9 +53,6 @@ public class EncodeUtl {
 
     /**
      * 获取md5
-     *
-     * @param buffer
-     * @return
      */
     public static String getMd5ByFile(byte[] buffer) {
         String value = null;

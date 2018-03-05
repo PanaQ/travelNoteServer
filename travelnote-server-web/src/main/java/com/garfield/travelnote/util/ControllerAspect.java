@@ -1,7 +1,7 @@
 package com.garfield.travelnote.util;
 
 import com.alibaba.fastjson.JSON;
-import com.garfield.travelnote.common.util.ResultEnum;
+import com.garfield.travelnote.api.util.ResultEnum;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.exception.CommonException;

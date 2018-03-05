@@ -13,7 +13,7 @@
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
 
-  <resultMap id="AttentionResultMap" type="com.garfield.travelnote.common.model.bo.AttentionBo">
+  <resultMap id="AttentionResultMap" type="com.garfield.travelnote.api.model.bo.AttentionBo">
     <!--
       WARNING - @mbg.generated
     -->

@@ -2,7 +2,7 @@ package com.garfield.travelnote.action;
 
 
 import com.garfield.travelnote.biz.service.ScenicSpotService;
-import com.garfield.travelnote.common.model.bo.ScenicSpotBo;
+import com.garfield.travelnote.api.model.bo.ScenicSpotBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.util.ResponseUtil;

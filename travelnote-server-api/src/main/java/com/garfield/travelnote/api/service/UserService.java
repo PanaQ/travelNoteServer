@@ -1,15 +1,15 @@
 package com.garfield.travelnote.api.service;
 
 import com.garfield.travelnote.api.helper.HTTPS;
-import com.garfield.travelnote.common.model.bo.BaseUserBo;
-import com.garfield.travelnote.common.model.bo.LoginBean;
-import com.garfield.travelnote.common.model.bo.UserBo;
+import com.garfield.travelnote.api.model.bo.BaseUserBo;
+import com.garfield.travelnote.api.model.bo.LoginBean;
+import com.garfield.travelnote.api.model.bo.UserBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import rx.Observable;
 
 @HTTPS
 public interface UserService {

@@ -1,12 +1,12 @@
 package com.garfield.travelnote.api.service;
 
-import com.garfield.travelnote.common.model.bo.DivisionBo;
+import com.garfield.travelnote.api.model.bo.DivisionBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 import java.util.List;
 

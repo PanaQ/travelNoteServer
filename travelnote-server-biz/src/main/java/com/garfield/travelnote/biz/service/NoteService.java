@@ -1,10 +1,9 @@
 package com.garfield.travelnote.biz.service;
 
-import com.garfield.travelnote.common.model.bo.BaseNoteBo;
-import com.garfield.travelnote.common.model.bo.NoteBo;
-import com.garfield.travelnote.common.model.bo.NoteQuery;
-import com.zhexinit.ov.common.query.ListBean;
-import com.zhexinit.ov.common.query.SortPagerQuery;
+import com.garfield.travelnote.api.model.bo.BaseNoteBo;
+import com.garfield.travelnote.api.model.bo.NoteBo;
+
+import java.util.List;
 
 /**
  * Created by Jingly on 2018/2/22.
@@ -21,9 +20,8 @@ public interface NoteService {
 
     void modifyNote(BaseNoteBo noteBo);
 
-    ListBean<BaseNoteBo> getNoteListByUserId(SortPagerQuery<NoteQuery> sortPagerQuery);
+    List<BaseNoteBo> getNoteListByUserId(Long userId);
 
-    ListBean<BaseNoteBo> getNoteList(SortPagerQuery<NoteQuery> sortPagerQuery);
+    List<BaseNoteBo> getNoteList();
 
-    ListBean<BaseNoteBo> getNoteListByMine(SortPagerQuery sortPagerQuery, Long userId);
 }

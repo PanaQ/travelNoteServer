@@ -1,6 +1,6 @@
 package com.garfield.travelnote.biz.converter;
 
-import com.garfield.travelnote.common.model.bo.DivisionBo;
+import com.garfield.travelnote.api.model.bo.DivisionBo;
 import com.garfield.travelnote.dal.domain.DivisionDo;
 import org.springframework.beans.BeanUtils;
 
