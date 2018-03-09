@@ -85,6 +85,8 @@ public class UserServiceImpl implements UserService {
             }
         }
         BeanUtils.copyProperties(newUserBo,oldUserDo);
+        String password = passwordEncodeService.encode(newUserBo.getPassword());
+        oldUserDo.setPassword(password);
         userDoMapper.updateByPrimaryKeySelective(oldUserDo);
         tokenManager.refreshUserDetails(newUserBo);
     }
