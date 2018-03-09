@@ -1,6 +1,5 @@
 package com.garfield.travelnote.biz.service.impl;
 
-import com.garfield.travelnote.biz.service.PasswordEncodeService;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
 import com.garfield.travelnote.api.model.bo.BaseUserBo;
@@ -22,9 +21,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDoMapper userDoMapper;
-
-    @Autowired
-    private PasswordEncodeService passwordEncodeService;
 
     @Autowired
     private TokenManager tokenManager;
@@ -86,18 +82,16 @@ public class UserServiceImpl implements UserService {
         }
 
         BeanUtils.copyProperties(newUserBo,oldUserDo);
-        String password = passwordEncodeService.encode(newUserBo.getPassword());
-        oldUserDo.setPassword(password);
+        oldUserDo.setUpdatedAt(DateUitl.getLongTimestamp());
         userDoMapper.updateByPrimaryKeySelective(oldUserDo);
         tokenManager.refreshUserDetails(newUserBo);
     }
 
     private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {
-        String dbPassword = passwordEncodeService.encode(baseUserBo.getPassword());
         UserDo appUserDo = new UserDo();
         appUserDo.setName(baseUserBo.getName());
         appUserDo.setPhone(baseUserBo.getPhone());
-        appUserDo.setPassword(dbPassword);
+        appUserDo.setPassword(baseUserBo.getPassword());
         appUserDo.setIsDeleted(0);
         Long timestamp = DateUitl.getLongTimestamp();
         appUserDo.setCreatedAt(timestamp);

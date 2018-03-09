@@ -3,6 +3,7 @@ package com.garfield.travelnote.biz.service;
 /**
  * Created by Jingly on 2018/2/22.
  */
+@Deprecated
 public interface PasswordEncodeService {
     String encode(String var1);
 
