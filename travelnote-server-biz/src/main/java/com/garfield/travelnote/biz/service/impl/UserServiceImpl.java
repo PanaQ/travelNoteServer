@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
                 throw new CommonException(ResultEnum.userAlreadyExist);
             }
         }
+
         BeanUtils.copyProperties(newUserBo,oldUserDo);
         String password = passwordEncodeService.encode(newUserBo.getPassword());
         oldUserDo.setPassword(password);
