@@ -45,7 +45,10 @@ public class ShiroConfiguration {
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/user/register","anon");
+        filterChainDefinitionMap.put("/note/uploadPicture","anon");
+        filterChainDefinitionMap.put("/note/uploadVideo","anon");
         filterChainDefinitionMap.put("/note/getNoteList","anon");
+        filterChainDefinitionMap.put("/upload/**","anon");
         filterChainDefinitionMap.put("/mateNote/getMateNoteList","anon");
         filterChainDefinitionMap.put("/division/*","anon");
         filterChainDefinitionMap.put("/**", "tokenAuthenticationFilter");

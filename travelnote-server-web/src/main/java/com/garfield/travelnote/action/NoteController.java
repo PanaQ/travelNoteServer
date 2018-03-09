@@ -108,7 +108,7 @@ public class NoteController {
         MultipartRequest multipartRequest = (MultipartRequest) request;
         MultipartFile file = multipartRequest.getFile("picture");
         String dirPath = this.getClass().getClassLoader().getResource("").getPath();
-        String fileName = pictureDir+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
+        String fileName = pictureDir+"/"+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
         File localFile = new File(dirPath+"/static"+fileName);
         file.transferTo(localFile);
         return ResponseUtil.success(serverUrl+fileName);
@@ -125,7 +125,7 @@ public class NoteController {
         MultipartRequest multipartRequest = (MultipartRequest) request;
         MultipartFile file = multipartRequest.getFile("video");
         String dirPath = this.getClass().getClassLoader().getResource("").getPath();
-        String fileName = videoDir+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
+        String fileName = videoDir+"/"+DateUitl.getLongTimestamp()+"_"+file.getOriginalFilename();
         File localFile = new File(dirPath+"/static"+fileName);
         file.transferTo(localFile);
         return ResponseUtil.success(serverUrl+fileName);

@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
                 throw new CommonException(ResultEnum.userAlreadyExist);
             }
         }
+
         BeanUtils.copyProperties(newUserBo,oldUserDo);
         userDoMapper.updateByPrimaryKeySelective(oldUserDo);
         tokenManager.refreshUserDetails(newUserBo);
