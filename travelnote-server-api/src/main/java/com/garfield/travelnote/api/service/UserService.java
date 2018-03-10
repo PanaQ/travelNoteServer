@@ -3,6 +3,7 @@ package com.garfield.travelnote.api.service;
 import com.garfield.travelnote.api.helper.HTTPS;
 import com.garfield.travelnote.api.model.bo.BaseUserBo;
 import com.garfield.travelnote.api.model.bo.LoginBean;
+import com.garfield.travelnote.api.model.bo.ModifyPwdBo;
 import com.garfield.travelnote.api.model.bo.UserBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
@@ -54,5 +55,11 @@ public interface UserService {
     @POST("/user/updateMyInfo")
     Observable<ResponseBean<UserBo>> updateMyInfo(@Body RequestBean<UserBo> requestBean);
 
-
+    /**
+     * 修改密码
+     * @param requestBean
+     * @return
+     */
+    @POST("/user/modifyPwd")
+    Observable<ResponseBean<Void>> modifyPwd(@Body RequestBean<ModifyPwdBo> requestBean);
 }

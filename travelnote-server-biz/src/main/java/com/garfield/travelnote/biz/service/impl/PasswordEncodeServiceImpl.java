@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 /**
  * Created by Jingly on 2018/2/22.
  */
-@Deprecated
 @Service
 public class PasswordEncodeServiceImpl implements PasswordEncodeService {
     @Override

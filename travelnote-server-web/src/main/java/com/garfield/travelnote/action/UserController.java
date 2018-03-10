@@ -1,5 +1,6 @@
 package com.garfield.travelnote.action;
 
+import com.garfield.travelnote.api.model.bo.ModifyPwdBo;
 import com.garfield.travelnote.biz.shiro.bean.UserDetail;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
@@ -61,6 +62,18 @@ public class UserController {
         UserBo newUserBo = requestBean.getParam();
         newUserBo.setId(userBo.getId());
         userService.updateMyInfo(newUserBo);
+        return ResponseUtil.success();
+    }
+
+    /**
+     * 修改密码
+     * @param requestBean
+     * @param userBo
+     * @return
+     */
+    @PostMapping(value = "modifyPwd")
+    public ResponseBean<Void> modifyPwd(@RequestBody @Valid RequestBean<ModifyPwdBo> requestBean,UserBo userBo){
+        userService.updatePassword(userBo.getId(),requestBean.getParam());
         return ResponseUtil.success();
     }
 

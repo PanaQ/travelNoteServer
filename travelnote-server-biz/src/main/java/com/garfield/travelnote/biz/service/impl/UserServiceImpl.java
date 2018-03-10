@@ -1,5 +1,7 @@
 package com.garfield.travelnote.biz.service.impl;
 
+import com.garfield.travelnote.api.model.bo.ModifyPwdBo;
+import com.garfield.travelnote.biz.service.PasswordEncodeService;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
 import com.garfield.travelnote.api.model.bo.BaseUserBo;
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDoMapper userDoMapper;
+
+    @Autowired
+    private PasswordEncodeService passwordEncodeService;
 
     @Autowired
     private TokenManager tokenManager;
@@ -83,15 +88,29 @@ public class UserServiceImpl implements UserService {
 
         BeanUtils.copyProperties(newUserBo,oldUserDo);
         oldUserDo.setUpdatedAt(DateUitl.getLongTimestamp());
+        oldUserDo.setPassword(null);
         userDoMapper.updateByPrimaryKeySelective(oldUserDo);
         tokenManager.refreshUserDetails(newUserBo);
     }
 
+    @Override
+    public void updatePassword(Long userId, ModifyPwdBo modifyPwdBo) {
+        UserDo userDo = userDoMapper.selectByPrimaryKey(userId);
+        if (userDo!=null){
+            boolean match = passwordEncodeService.match(modifyPwdBo.getOldPassword(),userDo.getPassword());
+            if(match){
+                userDo.setPassword(passwordEncodeService.encode(modifyPwdBo.getNewPassword()));
+                userDoMapper.updateByPrimaryKeySelective(userDo);
+            }else throw new CommonException(ResultEnum.errorPassword);
+        }
+    }
+
     private UserDo createAppUserDo(BaseUserBo baseUserBo) throws Exception {
+        String dbPassword = passwordEncodeService.encode(baseUserBo.getPassword());
         UserDo appUserDo = new UserDo();
         appUserDo.setName(baseUserBo.getName());
         appUserDo.setPhone(baseUserBo.getPhone());
-        appUserDo.setPassword(baseUserBo.getPassword());
+        appUserDo.setPassword(dbPassword);
         appUserDo.setIsDeleted(0);
         Long timestamp = DateUitl.getLongTimestamp();
         appUserDo.setCreatedAt(timestamp);
