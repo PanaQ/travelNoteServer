@@ -1,16 +1,16 @@
 package com.garfield.travelnote.action;
 
 
+import com.garfield.travelnote.api.model.bo.DivisionBo;
+import com.garfield.travelnote.api.model.bo.TrainBo;
+import com.garfield.travelnote.api.model.query.TrainQuery;
 import com.garfield.travelnote.biz.service.ScenicSpotService;
 import com.garfield.travelnote.api.model.bo.ScenicSpotBo;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import com.zhexinit.ov.common.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,6 +52,13 @@ public class ScenicSpotController {
     public ResponseBean<List<ScenicSpotBo>> sortByLevel(@RequestBody RequestBean<List<Long>> requestBean){
         List<ScenicSpotBo> scenicSpotBos = scenicSpotService.sortByLevel(requestBean.getParam());
         return ResponseUtil.success(scenicSpotBos);
+    }
+
+    @PostMapping("queryTrain")
+    public ResponseBean<List<TrainBo>> queryTrain(@RequestBody RequestBean<TrainQuery> requestBean) {
+        TrainQuery trainQuery = requestBean.getParam();
+        List<TrainBo> trainBoList = scenicSpotService.queryTrain(trainQuery);
+        return ResponseUtil.success(trainBoList);
     }
 
 }

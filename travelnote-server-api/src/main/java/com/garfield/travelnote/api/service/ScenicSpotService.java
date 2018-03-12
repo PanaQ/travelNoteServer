@@ -2,6 +2,8 @@ package com.garfield.travelnote.api.service;
 
 import com.garfield.travelnote.api.helper.HTTPS;
 import com.garfield.travelnote.api.model.bo.ScenicSpotBo;
+import com.garfield.travelnote.api.model.bo.TrainBo;
+import com.garfield.travelnote.api.model.query.TrainQuery;
 import com.zhexinit.ov.common.bean.RequestBean;
 import com.zhexinit.ov.common.bean.ResponseBean;
 import io.reactivex.Observable;
@@ -21,4 +23,7 @@ public interface ScenicSpotService {
 
     @POST("/scenicSpot/sortByLevel")
     Observable<ResponseBean<List<ScenicSpotBo>>> sortByLevel(@Body RequestBean<List<Long>> requestBean);
+
+    @POST("/scenicSpot/queryTrain")
+    Observable<ResponseBean<List<TrainBo>>> queryTrain(@Body RequestBean<TrainQuery> requestBean);
 }
