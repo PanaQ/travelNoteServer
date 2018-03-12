@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.garfield.travelnote.dal.mapper.TrainDoMapper" >
+  <resultMap id="BaseResultMap" type="com.garfield.travelnote.dal.domain.TrainDo" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="train_no" property="trainNo" jdbcType="VARCHAR" />
+    <result column="start_station" property="startStation" jdbcType="VARCHAR" />
+    <result column="end_station" property="endStation" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="run_time" property="runTime" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+  </resultMap>
+</mapper>

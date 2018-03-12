@@ -88,18 +88,18 @@
             <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
         </table>-->
-        <table tableName="scenic_spot" domainObjectName="ScenicSpotDo" enableCountByExample="false">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
-            <columnOverride column="division_id" property="divisionId" javaType="java.lang.Long" jdbcType="INTEGER"/>
-            <columnOverride column="play_time" property="playTime" javaType="java.lang.Long" jdbcType="INTEGER"/>
-            <columnOverride column="longitude" property="longitude" javaType="double" jdbcType="DOUBLE"/>
-            <columnOverride column="latitude" property="latitude" javaType="double" jdbcType="DOUBLE"/>
-            <columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
-            <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
-            <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
-            <columnOverride column="level" property="level" javaType="java.lang.Integer" jdbcType="TINYINT"/>
-        </table>
+        <!--<table tableName="scenic_spot" domainObjectName="ScenicSpotDo" enableCountByExample="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>-->
+            <!--<columnOverride column="division_id" property="divisionId" javaType="java.lang.Long" jdbcType="INTEGER"/>-->
+            <!--<columnOverride column="play_time" property="playTime" javaType="java.lang.Long" jdbcType="INTEGER"/>-->
+            <!--<columnOverride column="longitude" property="longitude" javaType="double" jdbcType="DOUBLE"/>-->
+            <!--<columnOverride column="latitude" property="latitude" javaType="double" jdbcType="DOUBLE"/>-->
+            <!--<columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>-->
+            <!--<columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>-->
+            <!--<columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>-->
+            <!--<columnOverride column="level" property="level" javaType="java.lang.Integer" jdbcType="TINYINT"/>-->
+        <!--</table>-->
         <!--<table tableName="user" domainObjectName="UserDo" enableCountByExample="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
@@ -119,6 +119,16 @@
             <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
             <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
         </table>-->
+
+        <table tableName="train" domainObjectName="TrainDo" enableCountByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="id" property="id" javaType="java.lang.Long" jdbcType="INTEGER"/>
+            <columnOverride column="created_at" property="createdAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
+            <columnOverride column="updated_at" property="updatedAt" javaType="java.lang.Long" jdbcType="INTEGER"/>
+            <columnOverride column="is_deleted" property="isDeleted" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+            <columnOverride column="price" property="price" javaType="double" jdbcType="DOUBLE"/>
+        </table>
+
     </context>
 
 </generatorConfiguration>

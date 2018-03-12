@@ -1,7 +1,6 @@
 package com.garfield.travelnote.biz.service;
 
 import com.garfield.travelnote.api.model.bo.BaseUserBo;
-import com.garfield.travelnote.api.model.bo.ModifyPwdBo;
 import com.garfield.travelnote.api.model.bo.UserBo;
 
 /**
@@ -38,9 +37,4 @@ public interface UserService {
      * @param newUserBo
      */
     void updateMyInfo(UserBo newUserBo);
-
-    /**
-     * 修改密码
-     */
-    void updatePassword(Long userId,ModifyPwdBo modifyPwdBo);
 }

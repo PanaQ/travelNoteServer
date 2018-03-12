@@ -13,5 +13,5 @@ public interface ScenicSpotDoMapper extends MyMapper<ScenicSpotDo> {
 
     List<ScenicSpotDo> selectByIds(@Param("ids") List<Long> scenicSpotBoIds);
 
-    List<ScenicSpotDo> sortByLevel(List<Long> scenicSpotBoIds);
+    List<ScenicSpotDo> sortByLevel(@Param("ids") List<Long> scenicSpotBoIds);
 }

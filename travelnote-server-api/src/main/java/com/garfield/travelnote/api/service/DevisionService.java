@@ -18,7 +18,7 @@ public interface DevisionService {
      * @return
      */
     @GET("/division/selectProvinces")
-    Observable<ResponseBean<List<DivisionBo>>> selectProvinces(@Body RequestBean<Void> param);
+    Observable<ResponseBean<List<DivisionBo>>> selectProvinces(RequestBean<Void> param);
 
     /**
      * 查询省市区

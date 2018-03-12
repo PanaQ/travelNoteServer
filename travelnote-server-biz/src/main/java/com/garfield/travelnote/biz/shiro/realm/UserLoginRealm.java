@@ -1,6 +1,5 @@
 package com.garfield.travelnote.biz.shiro.realm;
 
-import com.garfield.travelnote.biz.service.PasswordEncodeService;
 import com.garfield.travelnote.biz.service.TokenManager;
 import com.garfield.travelnote.biz.service.UserService;
 import com.garfield.travelnote.biz.shiro.bean.UserDetail;
@@ -23,8 +22,8 @@ public class UserLoginRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PasswordEncodeService passwordEncodeService;
+//    @Autowired
+//    private PasswordEncodeService passwordEncodeService;
 
     @Autowired
     private TokenManager tokenManager;
@@ -54,19 +53,19 @@ public class UserLoginRealm extends AuthorizingRealm {
         String inputPassword = String.valueOf(token.getPassword());
         UserBo userBo = userService.getUserByLogin(login);
         if (userBo != null) {
-//            if(inputPassword.equals(userBo.getPassword())){
-//                UserDetail userDetail = tokenManager.createNewToken(userBo);
-//                return new SimpleAuthenticationInfo(userDetail, inputPassword, getName());
-//            } else {
-//                throw new IncorrectCredentialsException();
-//            }
-            boolean match = passwordEncodeService.match(inputPassword, userBo.getPassword());
-            if (match) {
+            if(inputPassword.equals(userBo.getPassword())){
                 UserDetail userDetail = tokenManager.createNewToken(userBo);
                 return new SimpleAuthenticationInfo(userDetail, inputPassword, getName());
             } else {
                 throw new IncorrectCredentialsException();
             }
+//            boolean match = passwordEncodeService.match(inputPassword, userBo.getPassword());
+//            if (match) {
+//                UserDetail userDetail = tokenManager.createNewToken(userBo);
+//                return new SimpleAuthenticationInfo(userDetail, inputPassword, getName());
+//            } else {
+//                throw new IncorrectCredentialsException();
+//            }
         } else {
             throw new UnknownAccountException();
         }
